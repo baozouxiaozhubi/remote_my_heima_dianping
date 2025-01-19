@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.hsj</groupId>
-    <artifactId>remote_my_heima_dianping</artifactId>
+    <artifactId>hmdp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>remote_my_heima_dianping</name>
-    <description>remote_my_heima_dianping</description>
+    <name>hmdp</name>
+    <description>hmdp</description>
     <url/>
     <licenses>
         <license/>

@@ -1,13 +1,13 @@
-package com.hsj.remote_my_heima_dianping;
+package com.hsj.hmdp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RemoteMyHeimaDianpingApplication {
+public class HmdpApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(RemoteMyHeimaDianpingApplication.class, args);
+        SpringApplication.run(HmdpApplication.class, args);
     }
 
 }
