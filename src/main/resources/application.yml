@@ -1,0 +1,12 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: my_heima_dianping
+  banner:
+    location: classpath:myBanner1.txt
+  datasource:
+    url: jdbc:mysql://121.40.226.231:3306/my_hmdp_database?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: Zhanhongyu010903
+    driver-class-name: com.mysql.jdbc.Driver
