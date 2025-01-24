@@ -13,9 +13,19 @@ spring:
     username: root
     password: Zhanhongyu010903
     driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    host: 121.40.226.231        # Redis 服务器地址
+    port: 6379             # Redis 端口号
+    password: 123456 # 如果 Redis 没有设置密码，可以省略该项
+    timeout: 6000ms        # 连接超时时间
+    lettuce:
+      pool:
+        max-active: 10     # 最大连接数
+        max-idle: 8        # 最大空闲连接数
+        min-idle: 0        # 最小空闲连接数
 logging:
   level:
-    root: root
+    root: INFO
     com.hsj.hmdp : debug
   file:
     name: logs\app.logs
