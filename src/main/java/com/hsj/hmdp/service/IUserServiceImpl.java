@@ -106,7 +106,8 @@ public class IUserServiceImpl extends ServiceImpl<UserMapper, User> implements I
         //7.2 将User对象转为HashMap存储 过滤敏感信息:使用hutool的BeanUtil.copyProperties类
         UserDto userDto = BeanUtil.copyProperties(user,UserDto.class);
         Map<String,Object> userDtoMapObject = BeanUtil.beanToMap(userDto);
-        // 借助工具类完成Map<String,Object>到Map<String,String>类型转换,因为stringRedisTemplate.opsForHash().putAll只能存Map<String,String>
+        // 借助工具类完成Map<String,Object>到Map<String,String>类型转换,因为stringRedisTemplate.opsForHash()
+        // putAll只能存Map<String,String>
         // 这一步也可以放在Template中实现
         Map<String, String> userDtoMap = new HashMap<>();
         userDtoMapObject.forEach((key, value) -> userDtoMap.put(key, String.valueOf(value)));
