@@ -233,3 +233,70 @@ io.lettuce.core.RedisReadOnlyException: READONLY You can't write against a read 
 2025-01-25 14:50:41.034  INFO 32020 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
 2025-01-25 14:50:41.035  INFO 32020 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-01-25 14:50:41.039  INFO 32020 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-25 18:11:08.817  INFO 24600 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 24600 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
+2025-01-25 18:11:08.818 DEBUG 24600 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
+2025-01-25 18:11:08.818  INFO 24600 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
+2025-01-25 18:11:09.283  INFO 24600 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-01-25 18:11:09.285  INFO 24600 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-25 18:11:09.305  INFO 24600 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8ms. Found 0 Redis repository interfaces.
+2025-01-25 18:11:09.668  INFO 24600 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2025-01-25 18:11:09.676  INFO 24600 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-25 18:11:09.676  INFO 24600 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2025-01-25 18:11:09.748  INFO 24600 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-25 18:11:09.748  INFO 24600 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 902 ms
+2025-01-25 18:11:11.215  INFO 24600 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2025-01-25 18:11:11.413  INFO 24600 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2025-01-25 18:11:11.421  INFO 24600 --- [main] com.hsj.hmdp.HmdpApplication             : Started HmdpApplication in 2.91 seconds (JVM running for 3.585)
+2025-01-25 18:11:14.820  INFO 24600 --- [http-nio-8081-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-25 18:11:14.821  INFO 24600 --- [http-nio-8081-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:11:14.825  INFO 24600 --- [http-nio-8081-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2025-01-25 18:11:18.863 DEBUG 24600 --- [http-nio-8081-exec-2] com.hsj.hmdp.service.IUserServiceImpl    : 验证码成功生成，为：792964
+2025-01-25 18:11:23.906  INFO 24600 --- [http-nio-8081-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-25 18:11:24.208  INFO 24600 --- [http-nio-8081-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-25 18:11:24.212 DEBUG 24600 --- [http-nio-8081-exec-4] com.hsj.hmdp.dao.UserMapper.selectOne    : ==>  Preparing: SELECT id,phone,password,nick_name,icon,create_time,update_time FROM tb_user WHERE (phone = ?)
+2025-01-25 18:11:24.223 DEBUG 24600 --- [http-nio-8081-exec-4] com.hsj.hmdp.dao.UserMapper.selectOne    : ==> Parameters: 18050285529(String)
+2025-01-25 18:11:24.249 DEBUG 24600 --- [http-nio-8081-exec-4] com.hsj.hmdp.dao.UserMapper.selectOne    : <==      Total: 1
+2025-01-25 18:11:24.598 DEBUG 24600 --- [http-nio-8081-exec-5] c.h.hmdp.dao.ShopTypeMapper.selectList   : ==>  Preparing: SELECT id,name,icon,sort,create_time,update_time FROM tb_shop_type
+2025-01-25 18:11:24.598 DEBUG 24600 --- [http-nio-8081-exec-5] c.h.hmdp.dao.ShopTypeMapper.selectList   : ==> Parameters: 
+2025-01-25 18:11:24.618 DEBUG 24600 --- [http-nio-8081-exec-5] c.h.hmdp.dao.ShopTypeMapper.selectList   : <==      Total: 10
+2025-01-25 18:11:35.174 DEBUG 24600 --- [http-nio-8081-exec-7] com.hsj.hmdp.dao.ShopMapper.selectById   : ==>  Preparing: SELECT id,name,type_id,images,area,address,x,y,avg_price,sold,comments,score,open_hours,create_time,update_time FROM tb_shop WHERE id=?
+2025-01-25 18:11:35.175 DEBUG 24600 --- [http-nio-8081-exec-7] com.hsj.hmdp.dao.ShopMapper.selectById   : ==> Parameters: 2(Long)
+2025-01-25 18:11:35.194 DEBUG 24600 --- [http-nio-8081-exec-7] com.hsj.hmdp.dao.ShopMapper.selectById   : <==      Total: 1
+2025-01-25 18:12:05.333  INFO 24600 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2025-01-25 18:12:05.334  INFO 24600 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-25 18:12:05.337  INFO 24600 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-25 22:03:22.226  INFO 32384 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 32384 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
+2025-01-25 22:03:22.227 DEBUG 32384 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
+2025-01-25 22:03:22.228  INFO 32384 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
+2025-01-25 22:03:22.693  INFO 32384 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-01-25 22:03:22.695  INFO 32384 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-25 22:03:22.713  INFO 32384 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 0 Redis repository interfaces.
+2025-01-25 22:03:23.049  INFO 32384 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2025-01-25 22:03:23.055  INFO 32384 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-25 22:03:23.055  INFO 32384 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2025-01-25 22:03:23.108  INFO 32384 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-25 22:03:23.109  INFO 32384 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 855 ms
+2025-01-25 22:03:24.475  INFO 32384 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2025-01-25 22:03:24.695  INFO 32384 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2025-01-25 22:03:24.702  INFO 32384 --- [main] com.hsj.hmdp.HmdpApplication             : Started HmdpApplication in 2.771 seconds (JVM running for 3.362)
+2025-01-25 22:03:36.704  INFO 32384 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-25 22:03:36.704  INFO 32384 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-25 22:03:36.709  INFO 32384 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2025-01-25 22:03:42.321 DEBUG 32384 --- [http-nio-8081-exec-3] com.hsj.hmdp.service.IUserServiceImpl    : 验证码成功生成，为：837376
+2025-01-25 22:03:48.909  INFO 32384 --- [http-nio-8081-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-25 22:03:49.269  INFO 32384 --- [http-nio-8081-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-25 22:03:49.273 DEBUG 32384 --- [http-nio-8081-exec-4] com.hsj.hmdp.dao.UserMapper.selectOne    : ==>  Preparing: SELECT id,phone,password,nick_name,icon,create_time,update_time FROM tb_user WHERE (phone = ?)
+2025-01-25 22:03:49.284 DEBUG 32384 --- [http-nio-8081-exec-4] com.hsj.hmdp.dao.UserMapper.selectOne    : ==> Parameters: 18050285529(String)
+2025-01-25 22:03:49.318 DEBUG 32384 --- [http-nio-8081-exec-4] com.hsj.hmdp.dao.UserMapper.selectOne    : <==      Total: 1
+2025-01-25 22:03:49.607 DEBUG 32384 --- [http-nio-8081-exec-6] c.h.hmdp.dao.ShopTypeMapper.selectList   : ==>  Preparing: SELECT id,name,icon,sort,create_time,update_time FROM tb_shop_type
+2025-01-25 22:03:49.608 DEBUG 32384 --- [http-nio-8081-exec-6] c.h.hmdp.dao.ShopTypeMapper.selectList   : ==> Parameters: 
+2025-01-25 22:03:49.635 DEBUG 32384 --- [http-nio-8081-exec-6] c.h.hmdp.dao.ShopTypeMapper.selectList   : <==      Total: 10
+2025-01-25 22:05:14.906 DEBUG 32384 --- [http-nio-8081-exec-7] com.hsj.hmdp.dao.ShopMapper.selectById   : ==>  Preparing: SELECT id,name,type_id,images,area,address,x,y,avg_price,sold,comments,score,open_hours,create_time,update_time FROM tb_shop WHERE id=?
+2025-01-25 22:05:14.906 DEBUG 32384 --- [http-nio-8081-exec-7] com.hsj.hmdp.dao.ShopMapper.selectById   : ==> Parameters: 1(Long)
+2025-01-25 22:05:14.932 DEBUG 32384 --- [http-nio-8081-exec-7] com.hsj.hmdp.dao.ShopMapper.selectById   : <==      Total: 1
+2025-01-25 22:05:29.101 DEBUG 32384 --- [http-nio-8081-exec-8] com.hsj.hmdp.dao.ShopMapper.selectById   : ==>  Preparing: SELECT id,name,type_id,images,area,address,x,y,avg_price,sold,comments,score,open_hours,create_time,update_time FROM tb_shop WHERE id=?
+2025-01-25 22:05:29.102 DEBUG 32384 --- [http-nio-8081-exec-8] com.hsj.hmdp.dao.ShopMapper.selectById   : ==> Parameters: 0(Long)
+2025-01-25 22:05:29.127 DEBUG 32384 --- [http-nio-8081-exec-8] com.hsj.hmdp.dao.ShopMapper.selectById   : <==      Total: 0
+2025-01-25 22:05:36.274  INFO 32384 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2025-01-25 22:05:36.275  INFO 32384 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-25 22:05:36.278  INFO 32384 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
