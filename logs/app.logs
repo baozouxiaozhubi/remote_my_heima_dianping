@@ -1,302 +1,555 @@
-2025-01-25 14:35:39.576  INFO 32628 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 32628 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
-2025-01-25 14:35:39.579 DEBUG 32628 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
-2025-01-25 14:35:39.580  INFO 32628 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
-2025-01-25 14:35:40.022  INFO 32628 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2025-01-25 14:35:40.024  INFO 32628 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2025-01-25 14:35:40.042  INFO 32628 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 0 Redis repository interfaces.
-2025-01-25 14:35:40.376  INFO 32628 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2025-01-25 14:35:40.385  INFO 32628 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-01-25 14:35:40.385  INFO 32628 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
-2025-01-25 14:35:40.451  INFO 32628 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-01-25 14:35:40.452  INFO 32628 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 847 ms
-2025-01-25 14:35:41.877  INFO 32628 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2025-01-25 14:35:42.042  INFO 32628 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
-2025-01-25 14:35:42.048  INFO 32628 --- [main] com.hsj.hmdp.HmdpApplication             : Started HmdpApplication in 2.773 seconds (JVM running for 3.355)
-2025-01-25 14:35:52.986  INFO 32628 --- [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-01-25 14:35:52.986  INFO 32628 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-01-25 14:35:52.990  INFO 32628 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
-2025-01-25 14:35:58.156 ERROR 32628 --- [http-nio-8081-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.data.redis.RedisSystemException: Error in execution; nested exception is io.lettuce.core.RedisReadOnlyException: READONLY You can't write against a read only replica.] with root cause
+2025-01-26 15:25:37.360  INFO 14476 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 14476 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
+2025-01-26 15:25:37.364 DEBUG 14476 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
+2025-01-26 15:25:37.364  INFO 14476 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
+2025-01-26 15:25:37.810  INFO 14476 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-01-26 15:25:37.812  INFO 14476 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-26 15:25:37.832  INFO 14476 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8ms. Found 0 Redis repository interfaces.
+2025-01-26 15:25:38.153  INFO 14476 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2025-01-26 15:25:38.159  INFO 14476 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-26 15:25:38.159  INFO 14476 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2025-01-26 15:25:38.213  INFO 14476 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-26 15:25:38.213  INFO 14476 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 824 ms
+2025-01-26 15:25:38.841  WARN 14476 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'shopController': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'IShopServiceImpl': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'cacheClient' defined in file [E:\hmdp\my_heima_dianping\target\classes\com\hsj\hmdp\utils\CacheClient.class]: Post-processing of merged bean definition failed; nested exception is java.lang.IllegalStateException: @Resource annotation is not supported on static fields
+2025-01-26 15:25:38.853  INFO 14476 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-01-26 15:25:38.864  INFO 14476 --- [main] ConditionEvaluationReportLoggingListener : 
 
-io.lettuce.core.RedisReadOnlyException: READONLY You can't write against a read only replica.
-	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:144) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:116) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.protocol.AsyncCommand.completeResult(AsyncCommand.java:120) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.protocol.AsyncCommand.complete(AsyncCommand.java:111) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.protocol.CommandHandler.complete(CommandHandler.java:746) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.protocol.CommandHandler.decode(CommandHandler.java:681) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.protocol.CommandHandler.channelRead(CommandHandler.java:598) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:719) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:655) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:581) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:493) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989) ~[netty-common-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.65.Final.jar:4.1.65.Final]
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2025-01-26 15:25:38.879 ERROR 14476 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'shopController': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'IShopServiceImpl': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'cacheClient' defined in file [E:\hmdp\my_heima_dianping\target\classes\com\hsj\hmdp\utils\CacheClient.class]: Post-processing of merged bean definition failed; nested exception is java.lang.IllegalStateException: @Resource annotation is not supported on static fields
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:321) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1425) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:897) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:879) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:551) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-2.3.12.RELEASE.jar:2.3.12.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:755) [spring-boot-2.3.12.RELEASE.jar:2.3.12.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747) [spring-boot-2.3.12.RELEASE.jar:2.3.12.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:402) [spring-boot-2.3.12.RELEASE.jar:2.3.12.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) [spring-boot-2.3.12.RELEASE.jar:2.3.12.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1247) [spring-boot-2.3.12.RELEASE.jar:2.3.12.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1236) [spring-boot-2.3.12.RELEASE.jar:2.3.12.RELEASE]
+	at com.hsj.hmdp.HmdpApplication.main(HmdpApplication.java:12) [classes/:na]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'IShopServiceImpl': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'cacheClient' defined in file [E:\hmdp\my_heima_dianping\target\classes\com\hsj\hmdp\utils\CacheClient.class]: Post-processing of merged bean definition failed; nested exception is java.lang.IllegalStateException: @Resource annotation is not supported on static fields
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:321) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1425) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1307) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1227) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:521) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:497) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:650) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:228) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:318) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	... 18 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'cacheClient' defined in file [E:\hmdp\my_heima_dianping\target\classes\com\hsj\hmdp\utils\CacheClient.class]: Post-processing of merged bean definition failed; nested exception is java.lang.IllegalStateException: @Resource annotation is not supported on static fields
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:571) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.resolveBeanByName(AbstractAutowireCapableBeanFactory.java:453) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:527) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:497) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:650) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:228) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:318) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	... 34 common frames omitted
+Caused by: java.lang.IllegalStateException: @Resource annotation is not supported on static fields
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.lambda$buildResourceMetadata$0(CommonAnnotationBeanPostProcessor.java:381) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithLocalFields(ReflectionUtils.java:673) ~[spring-core-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.buildResourceMetadata(CommonAnnotationBeanPostProcessor.java:366) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.findResourceMetadata(CommonAnnotationBeanPostProcessor.java:347) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessMergedBeanDefinition(CommonAnnotationBeanPostProcessor.java:295) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyMergedBeanDefinitionPostProcessors(AbstractAutowireCapableBeanFactory.java:1098) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:568) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	... 46 common frames omitted
+
+2025-01-26 15:26:17.590  INFO 30284 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 30284 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
+2025-01-26 15:26:17.592 DEBUG 30284 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
+2025-01-26 15:26:17.592  INFO 30284 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
+2025-01-26 15:26:17.965  INFO 30284 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-01-26 15:26:17.966  INFO 30284 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-26 15:26:17.980  INFO 30284 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 0 Redis repository interfaces.
+2025-01-26 15:26:18.267  INFO 30284 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2025-01-26 15:26:18.273  INFO 30284 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-26 15:26:18.273  INFO 30284 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2025-01-26 15:26:18.323  INFO 30284 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-26 15:26:18.323  INFO 30284 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 707 ms
+2025-01-26 15:26:18.862  WARN 30284 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'shopController': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'IShopServiceImpl': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'cacheClient' defined in file [E:\hmdp\my_heima_dianping\target\classes\com\hsj\hmdp\utils\CacheClient.class]: Post-processing of merged bean definition failed; nested exception is java.lang.IllegalStateException: @Resource annotation is not supported on static fields
+2025-01-26 15:26:18.874  INFO 30284 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-01-26 15:26:18.883  INFO 30284 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2025-01-26 15:26:18.896 ERROR 30284 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'shopController': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'IShopServiceImpl': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'cacheClient' defined in file [E:\hmdp\my_heima_dianping\target\classes\com\hsj\hmdp\utils\CacheClient.class]: Post-processing of merged bean definition failed; nested exception is java.lang.IllegalStateException: @Resource annotation is not supported on static fields
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:321) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1425) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:897) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:879) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:551) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-2.3.12.RELEASE.jar:2.3.12.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:755) [spring-boot-2.3.12.RELEASE.jar:2.3.12.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747) [spring-boot-2.3.12.RELEASE.jar:2.3.12.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:402) [spring-boot-2.3.12.RELEASE.jar:2.3.12.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) [spring-boot-2.3.12.RELEASE.jar:2.3.12.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1247) [spring-boot-2.3.12.RELEASE.jar:2.3.12.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1236) [spring-boot-2.3.12.RELEASE.jar:2.3.12.RELEASE]
+	at com.hsj.hmdp.HmdpApplication.main(HmdpApplication.java:12) [classes/:na]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'IShopServiceImpl': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'cacheClient' defined in file [E:\hmdp\my_heima_dianping\target\classes\com\hsj\hmdp\utils\CacheClient.class]: Post-processing of merged bean definition failed; nested exception is java.lang.IllegalStateException: @Resource annotation is not supported on static fields
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:321) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1425) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1307) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1227) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:521) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:497) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:650) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:228) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:318) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	... 18 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'cacheClient' defined in file [E:\hmdp\my_heima_dianping\target\classes\com\hsj\hmdp\utils\CacheClient.class]: Post-processing of merged bean definition failed; nested exception is java.lang.IllegalStateException: @Resource annotation is not supported on static fields
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:571) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.resolveBeanByName(AbstractAutowireCapableBeanFactory.java:453) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:527) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:497) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:650) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:228) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:318) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	... 34 common frames omitted
+Caused by: java.lang.IllegalStateException: @Resource annotation is not supported on static fields
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.lambda$buildResourceMetadata$0(CommonAnnotationBeanPostProcessor.java:381) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithLocalFields(ReflectionUtils.java:673) ~[spring-core-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.buildResourceMetadata(CommonAnnotationBeanPostProcessor.java:366) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.findResourceMetadata(CommonAnnotationBeanPostProcessor.java:347) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessMergedBeanDefinition(CommonAnnotationBeanPostProcessor.java:295) ~[spring-context-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyMergedBeanDefinitionPostProcessors(AbstractAutowireCapableBeanFactory.java:1098) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:568) ~[spring-beans-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	... 46 common frames omitted
+
+2025-01-26 15:26:45.218  INFO 32292 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 32292 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
+2025-01-26 15:26:45.220 DEBUG 32292 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
+2025-01-26 15:26:45.220  INFO 32292 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
+2025-01-26 15:26:45.599  INFO 32292 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-01-26 15:26:45.600  INFO 32292 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-26 15:26:45.616  INFO 32292 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 0 Redis repository interfaces.
+2025-01-26 15:26:45.904  INFO 32292 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2025-01-26 15:26:45.909  INFO 32292 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-26 15:26:45.910  INFO 32292 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2025-01-26 15:26:45.962  INFO 32292 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-26 15:26:45.962  INFO 32292 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 718 ms
+2025-01-26 15:26:47.210  INFO 32292 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2025-01-26 15:26:47.385  INFO 32292 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2025-01-26 15:26:47.392  INFO 32292 --- [main] com.hsj.hmdp.HmdpApplication             : Started HmdpApplication in 2.4 seconds (JVM running for 2.992)
+2025-01-26 15:26:52.719  INFO 32292 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-26 15:26:52.720  INFO 32292 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-26 15:26:52.728  INFO 32292 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2025-01-26 15:26:59.467 DEBUG 32292 --- [http-nio-8081-exec-4] com.hsj.hmdp.service.IUserServiceImpl    : 验证码成功生成，为：075691
+2025-01-26 15:27:03.751  INFO 32292 --- [http-nio-8081-exec-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-26 15:27:04.038  INFO 32292 --- [http-nio-8081-exec-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-26 15:27:04.043 DEBUG 32292 --- [http-nio-8081-exec-6] com.hsj.hmdp.dao.UserMapper.selectOne    : ==>  Preparing: SELECT id,phone,password,nick_name,icon,create_time,update_time FROM tb_user WHERE (phone = ?)
+2025-01-26 15:27:04.054 DEBUG 32292 --- [http-nio-8081-exec-6] com.hsj.hmdp.dao.UserMapper.selectOne    : ==> Parameters: 18050285529(String)
+2025-01-26 15:27:04.079 DEBUG 32292 --- [http-nio-8081-exec-6] com.hsj.hmdp.dao.UserMapper.selectOne    : <==      Total: 1
+2025-01-26 15:27:04.386 DEBUG 32292 --- [http-nio-8081-exec-5] c.h.hmdp.dao.ShopTypeMapper.selectList   : ==>  Preparing: SELECT id,name,icon,sort,create_time,update_time FROM tb_shop_type
+2025-01-26 15:27:04.387 DEBUG 32292 --- [http-nio-8081-exec-5] c.h.hmdp.dao.ShopTypeMapper.selectList   : ==> Parameters: 
+2025-01-26 15:27:04.408 DEBUG 32292 --- [http-nio-8081-exec-5] c.h.hmdp.dao.ShopTypeMapper.selectList   : <==      Total: 10
+2025-01-26 15:27:50.648 DEBUG 32292 --- [http-nio-8081-exec-7] com.hsj.hmdp.dao.ShopMapper.selectById   : ==>  Preparing: SELECT id,name,type_id,images,area,address,x,y,avg_price,sold,comments,score,open_hours,create_time,update_time FROM tb_shop WHERE id=?
+2025-01-26 15:27:50.648 DEBUG 32292 --- [http-nio-8081-exec-7] com.hsj.hmdp.dao.ShopMapper.selectById   : ==> Parameters: 2(Long)
+2025-01-26 15:27:50.665 DEBUG 32292 --- [http-nio-8081-exec-7] com.hsj.hmdp.dao.ShopMapper.selectById   : <==      Total: 1
+2025-01-26 15:27:55.303 DEBUG 32292 --- [http-nio-8081-exec-8] com.hsj.hmdp.dao.ShopMapper.selectById   : ==>  Preparing: SELECT id,name,type_id,images,area,address,x,y,avg_price,sold,comments,score,open_hours,create_time,update_time FROM tb_shop WHERE id=?
+2025-01-26 15:27:55.304 DEBUG 32292 --- [http-nio-8081-exec-8] com.hsj.hmdp.dao.ShopMapper.selectById   : ==> Parameters: 0(Long)
+2025-01-26 15:27:55.322 DEBUG 32292 --- [http-nio-8081-exec-8] com.hsj.hmdp.dao.ShopMapper.selectById   : <==      Total: 0
+2025-01-26 15:27:55.351 ERROR 32292 --- [http-nio-8081-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalArgumentException: Value must not be null!] with root cause
+
+java.lang.IllegalArgumentException: Value must not be null!
+	at org.springframework.util.Assert.notNull(Assert.java:201) ~[spring-core-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.data.redis.connection.lettuce.LettuceStringCommands.setEx(LettuceStringCommands.java:164) ~[spring-data-redis-2.6.2.jar:2.6.2]
+	at org.springframework.data.redis.connection.DefaultedRedisConnection.setEx(DefaultedRedisConnection.java:334) ~[spring-data-redis-2.6.2.jar:2.6.2]
+	at org.springframework.data.redis.connection.DefaultStringRedisConnection.setEx(DefaultStringRedisConnection.java:1138) ~[spring-data-redis-2.6.2.jar:2.6.2]
+	at org.springframework.data.redis.core.DefaultValueOperations$8.potentiallyUsePsetEx(DefaultValueOperations.java:337) ~[spring-data-redis-2.6.2.jar:2.6.2]
+	at org.springframework.data.redis.core.DefaultValueOperations$8.doInRedis(DefaultValueOperations.java:330) ~[spring-data-redis-2.6.2.jar:2.6.2]
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:223) ~[spring-data-redis-2.6.2.jar:2.6.2]
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:190) ~[spring-data-redis-2.6.2.jar:2.6.2]
+	at org.springframework.data.redis.core.AbstractOperations.execute(AbstractOperations.java:97) ~[spring-data-redis-2.6.2.jar:2.6.2]
+	at org.springframework.data.redis.core.DefaultValueOperations.set(DefaultValueOperations.java:325) ~[spring-data-redis-2.6.2.jar:2.6.2]
+	at com.hsj.hmdp.utils.CacheClient.setWithTTL(CacheClient.java:32) ~[classes/:na]
+	at com.hsj.hmdp.utils.CacheClient.queryWithTTL(CacheClient.java:64) ~[classes/:na]
+	at com.hsj.hmdp.service.IShopServiceImpl.queryById(IShopServiceImpl.java:113) ~[classes/:na]
+	at com.hsj.hmdp.service.IShopServiceImpl$$FastClassBySpringCGLIB$$d7691510.invoke(<generated>) ~[classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688) ~[spring-aop-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at com.hsj.hmdp.service.IShopServiceImpl$$EnhancerBySpringCGLIB$$95df6d84.queryById(<generated>) ~[classes/:na]
+	at com.hsj.hmdp.controller.ShopController.queryShopById(ShopController.java:23) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_152]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_152]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_152]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_152]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105) ~[spring-webmvc-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:878) ~[spring-webmvc-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:792) ~[spring-webmvc-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626) ~[tomcat-embed-core-9.0.46.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) ~[tomcat-embed-core-9.0.46.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.46.jar:9.0.46]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.46.jar:9.0.46]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.46.jar:9.0.46]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.46.jar:9.0.46]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.46.jar:9.0.46]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.46.jar:9.0.46]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.46.jar:9.0.46]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.46.jar:9.0.46]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.46.jar:9.0.46]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.15.RELEASE.jar:5.2.15.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.46.jar:9.0.46]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.46.jar:9.0.46]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.46.jar:9.0.46]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) [tomcat-embed-core-9.0.46.jar:9.0.46]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542) [tomcat-embed-core-9.0.46.jar:9.0.46]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143) [tomcat-embed-core-9.0.46.jar:9.0.46]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.46.jar:9.0.46]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) [tomcat-embed-core-9.0.46.jar:9.0.46]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357) [tomcat-embed-core-9.0.46.jar:9.0.46]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374) [tomcat-embed-core-9.0.46.jar:9.0.46]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.46.jar:9.0.46]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893) [tomcat-embed-core-9.0.46.jar:9.0.46]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1707) [tomcat-embed-core-9.0.46.jar:9.0.46]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.46.jar:9.0.46]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_152]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_152]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.46.jar:9.0.46]
 	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_152]
 
-2025-01-25 14:36:07.421 ERROR 32628 --- [http-nio-8081-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.data.redis.RedisSystemException: Error in execution; nested exception is io.lettuce.core.RedisReadOnlyException: READONLY You can't write against a read only replica.] with root cause
-
-io.lettuce.core.RedisReadOnlyException: READONLY You can't write against a read only replica.
-	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:144) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:116) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.protocol.AsyncCommand.completeResult(AsyncCommand.java:120) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.protocol.AsyncCommand.complete(AsyncCommand.java:111) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.protocol.CommandHandler.complete(CommandHandler.java:746) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.protocol.CommandHandler.decode(CommandHandler.java:681) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.protocol.CommandHandler.channelRead(CommandHandler.java:598) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:719) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:655) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:581) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:493) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989) ~[netty-common-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.65.Final.jar:4.1.65.Final]
-	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_152]
-
-2025-01-25 14:36:28.553  INFO 28744 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 28744 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
-2025-01-25 14:36:28.554 DEBUG 28744 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
-2025-01-25 14:36:28.555  INFO 28744 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
-2025-01-25 14:36:28.921  INFO 28744 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2025-01-25 14:36:28.922  INFO 28744 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2025-01-25 14:36:28.937  INFO 28744 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 0 Redis repository interfaces.
-2025-01-25 14:36:29.228  INFO 28744 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2025-01-25 14:36:29.233  INFO 28744 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-01-25 14:36:29.233  INFO 28744 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
-2025-01-25 14:36:29.283  INFO 28744 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-01-25 14:36:29.283  INFO 28744 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 706 ms
-2025-01-25 14:36:30.544  INFO 28744 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2025-01-25 14:36:30.715  INFO 28744 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
-2025-01-25 14:36:30.722  INFO 28744 --- [main] com.hsj.hmdp.HmdpApplication             : Started HmdpApplication in 2.399 seconds (JVM running for 2.954)
-2025-01-25 14:36:46.392  INFO 28744 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-01-25 14:36:46.393  INFO 28744 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-01-25 14:36:46.396  INFO 28744 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
-2025-01-25 14:36:46.879 ERROR 28744 --- [http-nio-8081-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.data.redis.RedisSystemException: Error in execution; nested exception is io.lettuce.core.RedisReadOnlyException: READONLY You can't write against a read only replica.] with root cause
-
-io.lettuce.core.RedisReadOnlyException: READONLY You can't write against a read only replica.
-	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:144) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:116) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.protocol.AsyncCommand.completeResult(AsyncCommand.java:120) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.protocol.AsyncCommand.complete(AsyncCommand.java:111) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.protocol.CommandHandler.complete(CommandHandler.java:746) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.protocol.CommandHandler.decode(CommandHandler.java:681) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.protocol.CommandHandler.channelRead(CommandHandler.java:598) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:719) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:655) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:581) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:493) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989) ~[netty-common-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.65.Final.jar:4.1.65.Final]
-	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_152]
-
-2025-01-25 14:37:31.612  INFO 28744 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2025-01-25 14:40:08.718  INFO 28656 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 28656 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
-2025-01-25 14:40:08.720 DEBUG 28656 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
-2025-01-25 14:40:08.720  INFO 28656 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
-2025-01-25 14:40:09.115  INFO 28656 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2025-01-25 14:40:09.116  INFO 28656 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2025-01-25 14:40:09.133  INFO 28656 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 0 Redis repository interfaces.
-2025-01-25 14:40:09.442  INFO 28656 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2025-01-25 14:40:09.447  INFO 28656 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-01-25 14:40:09.447  INFO 28656 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
-2025-01-25 14:40:09.497  INFO 28656 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-01-25 14:40:09.498  INFO 28656 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 753 ms
-2025-01-25 14:40:10.767  INFO 28656 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2025-01-25 14:40:10.930  INFO 28656 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
-2025-01-25 14:40:10.937  INFO 28656 --- [main] com.hsj.hmdp.HmdpApplication             : Started HmdpApplication in 2.456 seconds (JVM running for 3.027)
-2025-01-25 14:40:18.844  INFO 28656 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-01-25 14:40:18.845  INFO 28656 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-01-25 14:40:18.848  INFO 28656 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
-2025-01-25 14:40:19.333 ERROR 28656 --- [http-nio-8081-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.data.redis.RedisSystemException: Error in execution; nested exception is io.lettuce.core.RedisReadOnlyException: READONLY You can't write against a read only replica.] with root cause
-
-io.lettuce.core.RedisReadOnlyException: READONLY You can't write against a read only replica.
-	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:144) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:116) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.protocol.AsyncCommand.completeResult(AsyncCommand.java:120) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.protocol.AsyncCommand.complete(AsyncCommand.java:111) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.protocol.CommandHandler.complete(CommandHandler.java:746) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.protocol.CommandHandler.decode(CommandHandler.java:681) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.lettuce.core.protocol.CommandHandler.channelRead(CommandHandler.java:598) ~[lettuce-core-6.1.6.RELEASE.jar:6.1.6.RELEASE]
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:719) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:655) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:581) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:493) ~[netty-transport-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989) ~[netty-common-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.65.Final.jar:4.1.65.Final]
-	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.65.Final.jar:4.1.65.Final]
-	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_152]
-
-2025-01-25 14:42:56.862  INFO 28656 --- [lettuce-eventExecutorLoop-1-4] i.l.core.protocol.ConnectionWatchdog     : Reconnecting, last destination was /121.40.226.231:6379
-2025-01-25 14:42:58.497  INFO 28656 --- [lettuce-nioEventLoop-4-2] i.l.core.protocol.ReconnectionHandler    : Reconnected to 121.40.226.231:6379
-2025-01-25 14:43:07.376  INFO 28656 --- [lettuce-eventExecutorLoop-1-5] i.l.core.protocol.ConnectionWatchdog     : Reconnecting, last destination was /121.40.226.231:6379
-2025-01-25 14:43:09.015  INFO 28656 --- [lettuce-nioEventLoop-4-3] i.l.core.protocol.ReconnectionHandler    : Reconnected to 121.40.226.231:6379
-2025-01-25 14:43:18.368  INFO 28656 --- [lettuce-eventExecutorLoop-1-6] i.l.core.protocol.ConnectionWatchdog     : Reconnecting, last destination was /121.40.226.231:6379
-2025-01-25 14:43:20.011  INFO 28656 --- [lettuce-nioEventLoop-4-4] i.l.core.protocol.ReconnectionHandler    : Reconnected to 121.40.226.231:6379
-2025-01-25 14:43:41.374  INFO 28656 --- [lettuce-eventExecutorLoop-1-7] i.l.core.protocol.ConnectionWatchdog     : Reconnecting, last destination was /121.40.226.231:6379
-2025-01-25 14:43:41.952  INFO 28656 --- [lettuce-nioEventLoop-4-5] i.l.core.protocol.ReconnectionHandler    : Reconnected to 121.40.226.231:6379
-2025-01-25 14:43:42.947  INFO 28656 --- [lettuce-nioEventLoop-4-6] i.l.core.protocol.ReconnectionHandler    : Reconnected to 121.40.226.231:6379
-2025-01-25 14:44:00.772  INFO 28656 --- [lettuce-eventExecutorLoop-1-9] i.l.core.protocol.ConnectionWatchdog     : Reconnecting, last destination was /121.40.226.231:6379
-2025-01-25 14:44:02.940  WARN 28656 --- [lettuce-nioEventLoop-4-7] i.l.core.protocol.ConnectionWatchdog     : Cannot reconnect to [121.40.226.231:6379]: Connection refused: no further information: /121.40.226.231:6379
-2025-01-25 14:44:05.739  INFO 28656 --- [lettuce-nioEventLoop-4-9] i.l.core.protocol.ReconnectionHandler    : Reconnected to 121.40.226.231:6379
-2025-01-25 14:44:05.869  INFO 28656 --- [lettuce-eventExecutorLoop-1-12] i.l.core.protocol.ConnectionWatchdog     : Reconnecting, last destination was /121.40.226.231:6379
-2025-01-25 14:44:07.499  INFO 28656 --- [lettuce-nioEventLoop-4-10] i.l.core.protocol.ReconnectionHandler    : Reconnected to 121.40.226.231:6379
-2025-01-25 14:44:18.260  INFO 28656 --- [lettuce-eventExecutorLoop-1-3] i.l.core.protocol.ConnectionWatchdog     : Reconnecting, last destination was /121.40.226.231:6379
-2025-01-25 14:44:19.883  INFO 28656 --- [lettuce-nioEventLoop-4-11] i.l.core.protocol.ReconnectionHandler    : Reconnected to 121.40.226.231:6379
-2025-01-25 14:45:16.542  INFO 28656 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2025-01-25 14:45:21.308  INFO 31036 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 31036 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
-2025-01-25 14:45:21.310 DEBUG 31036 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
-2025-01-25 14:45:21.310  INFO 31036 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
-2025-01-25 14:45:21.698  INFO 31036 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2025-01-25 14:45:21.699  INFO 31036 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2025-01-25 14:45:21.714  INFO 31036 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 0 Redis repository interfaces.
-2025-01-25 14:45:21.992  INFO 31036 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2025-01-25 14:45:21.998  INFO 31036 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-01-25 14:45:21.998  INFO 31036 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
-2025-01-25 14:45:22.046  INFO 31036 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-01-25 14:45:22.047  INFO 31036 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 713 ms
-2025-01-25 14:45:23.312  INFO 31036 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2025-01-25 14:45:23.485  INFO 31036 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
-2025-01-25 14:45:23.492  INFO 31036 --- [main] com.hsj.hmdp.HmdpApplication             : Started HmdpApplication in 2.421 seconds (JVM running for 2.987)
-2025-01-25 14:45:30.252  INFO 31036 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-01-25 14:45:30.252  INFO 31036 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-01-25 14:45:30.256  INFO 31036 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
-2025-01-25 14:45:30.761 DEBUG 31036 --- [http-nio-8081-exec-1] com.hsj.hmdp.service.IUserServiceImpl    : 验证码成功生成，为：245875
-2025-01-25 14:45:36.628  INFO 31036 --- [http-nio-8081-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-01-25 14:45:36.959  INFO 31036 --- [http-nio-8081-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-01-25 14:45:36.964 DEBUG 31036 --- [http-nio-8081-exec-2] com.hsj.hmdp.dao.UserMapper.selectOne    : ==>  Preparing: SELECT id,phone,password,nick_name,icon,create_time,update_time FROM tb_user WHERE (phone = ?)
-2025-01-25 14:45:36.975 DEBUG 31036 --- [http-nio-8081-exec-2] com.hsj.hmdp.dao.UserMapper.selectOne    : ==> Parameters: 18050285529(String)
-2025-01-25 14:45:37.004 DEBUG 31036 --- [http-nio-8081-exec-2] com.hsj.hmdp.dao.UserMapper.selectOne    : <==      Total: 1
-2025-01-25 14:45:37.332 DEBUG 31036 --- [http-nio-8081-exec-3] c.h.hmdp.dao.ShopTypeMapper.selectList   : ==>  Preparing: SELECT id,name,icon,sort,create_time,update_time FROM tb_shop_type
-2025-01-25 14:45:37.333 DEBUG 31036 --- [http-nio-8081-exec-3] c.h.hmdp.dao.ShopTypeMapper.selectList   : ==> Parameters: 
-2025-01-25 14:45:37.358 DEBUG 31036 --- [http-nio-8081-exec-3] c.h.hmdp.dao.ShopTypeMapper.selectList   : <==      Total: 10
-2025-01-25 14:48:39.462  INFO 31036 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2025-01-25 14:48:39.462  INFO 31036 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-01-25 14:48:39.466  INFO 31036 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-01-25 14:49:44.726  INFO 32020 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 32020 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
-2025-01-25 14:49:44.729 DEBUG 32020 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
-2025-01-25 14:49:44.729  INFO 32020 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
-2025-01-25 14:49:45.126  INFO 32020 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2025-01-25 14:49:45.127  INFO 32020 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2025-01-25 14:49:45.142  INFO 32020 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 0 Redis repository interfaces.
-2025-01-25 14:49:45.445  INFO 32020 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2025-01-25 14:49:45.451  INFO 32020 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-01-25 14:49:45.451  INFO 32020 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
-2025-01-25 14:49:45.502  INFO 32020 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-01-25 14:49:45.502  INFO 32020 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 750 ms
-2025-01-25 14:49:46.860  INFO 32020 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2025-01-25 14:49:47.096  INFO 32020 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
-2025-01-25 14:49:47.103  INFO 32020 --- [main] com.hsj.hmdp.HmdpApplication             : Started HmdpApplication in 2.612 seconds (JVM running for 3.166)
-2025-01-25 14:50:06.934  INFO 32020 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-01-25 14:50:06.935  INFO 32020 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-01-25 14:50:06.967  INFO 32020 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 25 ms
-2025-01-25 14:50:13.999 DEBUG 32020 --- [http-nio-8081-exec-3] com.hsj.hmdp.service.IUserServiceImpl    : 验证码成功生成，为：186699
-2025-01-25 14:50:18.368  INFO 32020 --- [http-nio-8081-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-01-25 14:50:18.649  INFO 32020 --- [http-nio-8081-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-01-25 14:50:18.654 DEBUG 32020 --- [http-nio-8081-exec-4] com.hsj.hmdp.dao.UserMapper.selectOne    : ==>  Preparing: SELECT id,phone,password,nick_name,icon,create_time,update_time FROM tb_user WHERE (phone = ?)
-2025-01-25 14:50:18.663 DEBUG 32020 --- [http-nio-8081-exec-4] com.hsj.hmdp.dao.UserMapper.selectOne    : ==> Parameters: 18050285529(String)
-2025-01-25 14:50:18.688 DEBUG 32020 --- [http-nio-8081-exec-4] com.hsj.hmdp.dao.UserMapper.selectOne    : <==      Total: 1
-2025-01-25 14:50:18.969 DEBUG 32020 --- [http-nio-8081-exec-5] c.h.hmdp.dao.ShopTypeMapper.selectList   : ==>  Preparing: SELECT id,name,icon,sort,create_time,update_time FROM tb_shop_type
-2025-01-25 14:50:18.970 DEBUG 32020 --- [http-nio-8081-exec-5] c.h.hmdp.dao.ShopTypeMapper.selectList   : ==> Parameters: 
-2025-01-25 14:50:19.002 DEBUG 32020 --- [http-nio-8081-exec-5] c.h.hmdp.dao.ShopTypeMapper.selectList   : <==      Total: 10
-2025-01-25 14:50:41.034  INFO 32020 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2025-01-25 14:50:41.035  INFO 32020 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-01-25 14:50:41.039  INFO 32020 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-01-25 18:11:08.817  INFO 24600 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 24600 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
-2025-01-25 18:11:08.818 DEBUG 24600 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
-2025-01-25 18:11:08.818  INFO 24600 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
-2025-01-25 18:11:09.283  INFO 24600 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2025-01-25 18:11:09.285  INFO 24600 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2025-01-25 18:11:09.305  INFO 24600 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8ms. Found 0 Redis repository interfaces.
-2025-01-25 18:11:09.668  INFO 24600 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2025-01-25 18:11:09.676  INFO 24600 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-01-25 18:11:09.676  INFO 24600 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
-2025-01-25 18:11:09.748  INFO 24600 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-01-25 18:11:09.748  INFO 24600 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 902 ms
-2025-01-25 18:11:11.215  INFO 24600 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2025-01-25 18:11:11.413  INFO 24600 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
-2025-01-25 18:11:11.421  INFO 24600 --- [main] com.hsj.hmdp.HmdpApplication             : Started HmdpApplication in 2.91 seconds (JVM running for 3.585)
-2025-01-25 18:11:14.820  INFO 24600 --- [http-nio-8081-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-01-25 18:11:14.821  INFO 24600 --- [http-nio-8081-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-01-25 18:11:14.825  INFO 24600 --- [http-nio-8081-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
-2025-01-25 18:11:18.863 DEBUG 24600 --- [http-nio-8081-exec-2] com.hsj.hmdp.service.IUserServiceImpl    : 验证码成功生成，为：792964
-2025-01-25 18:11:23.906  INFO 24600 --- [http-nio-8081-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-01-25 18:11:24.208  INFO 24600 --- [http-nio-8081-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-01-25 18:11:24.212 DEBUG 24600 --- [http-nio-8081-exec-4] com.hsj.hmdp.dao.UserMapper.selectOne    : ==>  Preparing: SELECT id,phone,password,nick_name,icon,create_time,update_time FROM tb_user WHERE (phone = ?)
-2025-01-25 18:11:24.223 DEBUG 24600 --- [http-nio-8081-exec-4] com.hsj.hmdp.dao.UserMapper.selectOne    : ==> Parameters: 18050285529(String)
-2025-01-25 18:11:24.249 DEBUG 24600 --- [http-nio-8081-exec-4] com.hsj.hmdp.dao.UserMapper.selectOne    : <==      Total: 1
-2025-01-25 18:11:24.598 DEBUG 24600 --- [http-nio-8081-exec-5] c.h.hmdp.dao.ShopTypeMapper.selectList   : ==>  Preparing: SELECT id,name,icon,sort,create_time,update_time FROM tb_shop_type
-2025-01-25 18:11:24.598 DEBUG 24600 --- [http-nio-8081-exec-5] c.h.hmdp.dao.ShopTypeMapper.selectList   : ==> Parameters: 
-2025-01-25 18:11:24.618 DEBUG 24600 --- [http-nio-8081-exec-5] c.h.hmdp.dao.ShopTypeMapper.selectList   : <==      Total: 10
-2025-01-25 18:11:35.174 DEBUG 24600 --- [http-nio-8081-exec-7] com.hsj.hmdp.dao.ShopMapper.selectById   : ==>  Preparing: SELECT id,name,type_id,images,area,address,x,y,avg_price,sold,comments,score,open_hours,create_time,update_time FROM tb_shop WHERE id=?
-2025-01-25 18:11:35.175 DEBUG 24600 --- [http-nio-8081-exec-7] com.hsj.hmdp.dao.ShopMapper.selectById   : ==> Parameters: 2(Long)
-2025-01-25 18:11:35.194 DEBUG 24600 --- [http-nio-8081-exec-7] com.hsj.hmdp.dao.ShopMapper.selectById   : <==      Total: 1
-2025-01-25 18:12:05.333  INFO 24600 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2025-01-25 18:12:05.334  INFO 24600 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-01-25 18:12:05.337  INFO 24600 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-01-25 22:03:22.226  INFO 32384 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 32384 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
-2025-01-25 22:03:22.227 DEBUG 32384 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
-2025-01-25 22:03:22.228  INFO 32384 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
-2025-01-25 22:03:22.693  INFO 32384 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2025-01-25 22:03:22.695  INFO 32384 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2025-01-25 22:03:22.713  INFO 32384 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 0 Redis repository interfaces.
-2025-01-25 22:03:23.049  INFO 32384 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2025-01-25 22:03:23.055  INFO 32384 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-01-25 22:03:23.055  INFO 32384 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
-2025-01-25 22:03:23.108  INFO 32384 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-01-25 22:03:23.109  INFO 32384 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 855 ms
-2025-01-25 22:03:24.475  INFO 32384 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2025-01-25 22:03:24.695  INFO 32384 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
-2025-01-25 22:03:24.702  INFO 32384 --- [main] com.hsj.hmdp.HmdpApplication             : Started HmdpApplication in 2.771 seconds (JVM running for 3.362)
-2025-01-25 22:03:36.704  INFO 32384 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-01-25 22:03:36.704  INFO 32384 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-01-25 22:03:36.709  INFO 32384 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
-2025-01-25 22:03:42.321 DEBUG 32384 --- [http-nio-8081-exec-3] com.hsj.hmdp.service.IUserServiceImpl    : 验证码成功生成，为：837376
-2025-01-25 22:03:48.909  INFO 32384 --- [http-nio-8081-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-01-25 22:03:49.269  INFO 32384 --- [http-nio-8081-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-01-25 22:03:49.273 DEBUG 32384 --- [http-nio-8081-exec-4] com.hsj.hmdp.dao.UserMapper.selectOne    : ==>  Preparing: SELECT id,phone,password,nick_name,icon,create_time,update_time FROM tb_user WHERE (phone = ?)
-2025-01-25 22:03:49.284 DEBUG 32384 --- [http-nio-8081-exec-4] com.hsj.hmdp.dao.UserMapper.selectOne    : ==> Parameters: 18050285529(String)
-2025-01-25 22:03:49.318 DEBUG 32384 --- [http-nio-8081-exec-4] com.hsj.hmdp.dao.UserMapper.selectOne    : <==      Total: 1
-2025-01-25 22:03:49.607 DEBUG 32384 --- [http-nio-8081-exec-6] c.h.hmdp.dao.ShopTypeMapper.selectList   : ==>  Preparing: SELECT id,name,icon,sort,create_time,update_time FROM tb_shop_type
-2025-01-25 22:03:49.608 DEBUG 32384 --- [http-nio-8081-exec-6] c.h.hmdp.dao.ShopTypeMapper.selectList   : ==> Parameters: 
-2025-01-25 22:03:49.635 DEBUG 32384 --- [http-nio-8081-exec-6] c.h.hmdp.dao.ShopTypeMapper.selectList   : <==      Total: 10
-2025-01-25 22:05:14.906 DEBUG 32384 --- [http-nio-8081-exec-7] com.hsj.hmdp.dao.ShopMapper.selectById   : ==>  Preparing: SELECT id,name,type_id,images,area,address,x,y,avg_price,sold,comments,score,open_hours,create_time,update_time FROM tb_shop WHERE id=?
-2025-01-25 22:05:14.906 DEBUG 32384 --- [http-nio-8081-exec-7] com.hsj.hmdp.dao.ShopMapper.selectById   : ==> Parameters: 1(Long)
-2025-01-25 22:05:14.932 DEBUG 32384 --- [http-nio-8081-exec-7] com.hsj.hmdp.dao.ShopMapper.selectById   : <==      Total: 1
-2025-01-25 22:05:29.101 DEBUG 32384 --- [http-nio-8081-exec-8] com.hsj.hmdp.dao.ShopMapper.selectById   : ==>  Preparing: SELECT id,name,type_id,images,area,address,x,y,avg_price,sold,comments,score,open_hours,create_time,update_time FROM tb_shop WHERE id=?
-2025-01-25 22:05:29.102 DEBUG 32384 --- [http-nio-8081-exec-8] com.hsj.hmdp.dao.ShopMapper.selectById   : ==> Parameters: 0(Long)
-2025-01-25 22:05:29.127 DEBUG 32384 --- [http-nio-8081-exec-8] com.hsj.hmdp.dao.ShopMapper.selectById   : <==      Total: 0
-2025-01-25 22:05:36.274  INFO 32384 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2025-01-25 22:05:36.275  INFO 32384 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-01-25 22:05:36.278  INFO 32384 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-26 15:29:04.440  INFO 32292 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2025-01-26 15:29:04.441  INFO 32292 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-26 15:29:04.444  INFO 32292 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-26 17:04:09.962  INFO 28740 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 28740 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
+2025-01-26 17:04:09.964 DEBUG 28740 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
+2025-01-26 17:04:09.964  INFO 28740 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
+2025-01-26 17:04:10.381  INFO 28740 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-01-26 17:04:10.382  INFO 28740 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-26 17:04:10.399  INFO 28740 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8ms. Found 0 Redis repository interfaces.
+2025-01-26 17:04:10.707  INFO 28740 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2025-01-26 17:04:10.714  INFO 28740 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-26 17:04:10.714  INFO 28740 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2025-01-26 17:04:10.781  INFO 28740 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-26 17:04:10.782  INFO 28740 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 788 ms
+2025-01-26 17:04:12.120  INFO 28740 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2025-01-26 17:04:12.328  INFO 28740 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2025-01-26 17:04:12.335  INFO 28740 --- [main] com.hsj.hmdp.HmdpApplication             : Started HmdpApplication in 2.63 seconds (JVM running for 3.173)
+2025-01-26 17:04:16.353  INFO 28740 --- [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-26 17:04:16.354  INFO 28740 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-26 17:04:16.361  INFO 28740 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2025-01-26 17:04:20.089 DEBUG 28740 --- [http-nio-8081-exec-3] com.hsj.hmdp.service.IUserServiceImpl    : 验证码成功生成，为：135448
+2025-01-26 17:04:23.854  INFO 28740 --- [http-nio-8081-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-26 17:04:24.225  INFO 28740 --- [http-nio-8081-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-26 17:04:24.230 DEBUG 28740 --- [http-nio-8081-exec-4] com.hsj.hmdp.dao.UserMapper.selectOne    : ==>  Preparing: SELECT id,phone,password,nick_name,icon,create_time,update_time FROM tb_user WHERE (phone = ?)
+2025-01-26 17:04:24.242 DEBUG 28740 --- [http-nio-8081-exec-4] com.hsj.hmdp.dao.UserMapper.selectOne    : ==> Parameters: 18050285529(String)
+2025-01-26 17:04:24.277 DEBUG 28740 --- [http-nio-8081-exec-4] com.hsj.hmdp.dao.UserMapper.selectOne    : <==      Total: 1
+2025-01-26 17:04:24.595 DEBUG 28740 --- [http-nio-8081-exec-5] c.h.hmdp.dao.ShopTypeMapper.selectList   : ==>  Preparing: SELECT id,name,icon,sort,create_time,update_time FROM tb_shop_type
+2025-01-26 17:04:24.596 DEBUG 28740 --- [http-nio-8081-exec-5] c.h.hmdp.dao.ShopTypeMapper.selectList   : ==> Parameters: 
+2025-01-26 17:04:24.622 DEBUG 28740 --- [http-nio-8081-exec-5] c.h.hmdp.dao.ShopTypeMapper.selectList   : <==      Total: 10
+2025-01-26 17:06:04.504  INFO 28740 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2025-01-26 17:06:04.505  INFO 28740 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-26 17:06:04.508  INFO 28740 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-26 17:06:13.656  INFO 4620 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 4620 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
+2025-01-26 17:06:13.658 DEBUG 4620 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
+2025-01-26 17:06:13.658  INFO 4620 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
+2025-01-26 17:06:14.050  INFO 4620 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-01-26 17:06:14.052  INFO 4620 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-26 17:06:14.068  INFO 4620 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 0 Redis repository interfaces.
+2025-01-26 17:06:14.353  INFO 4620 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2025-01-26 17:06:14.358  INFO 4620 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-26 17:06:14.359  INFO 4620 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2025-01-26 17:06:14.409  INFO 4620 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-26 17:06:14.410  INFO 4620 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 728 ms
+2025-01-26 17:06:15.646  INFO 4620 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2025-01-26 17:06:15.836  INFO 4620 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2025-01-26 17:06:15.842  INFO 4620 --- [main] com.hsj.hmdp.HmdpApplication             : Started HmdpApplication in 2.42 seconds (JVM running for 2.972)
+2025-01-26 17:06:21.028  INFO 4620 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-26 17:06:21.029  INFO 4620 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-26 17:06:21.034  INFO 4620 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2025-01-26 17:06:21.622  INFO 4620 --- [http-nio-8081-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-26 17:06:21.912  INFO 4620 --- [http-nio-8081-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-26 17:06:21.916 DEBUG 4620 --- [http-nio-8081-exec-1] com.hsj.hmdp.dao.ShopMapper.selectById   : ==>  Preparing: SELECT id,name,type_id,images,area,address,x,y,avg_price,sold,comments,score,open_hours,create_time,update_time FROM tb_shop WHERE id=?
+2025-01-26 17:06:21.928 DEBUG 4620 --- [http-nio-8081-exec-1] com.hsj.hmdp.dao.ShopMapper.selectById   : ==> Parameters: 0(Long)
+2025-01-26 17:06:21.952 DEBUG 4620 --- [http-nio-8081-exec-1] com.hsj.hmdp.dao.ShopMapper.selectById   : <==      Total: 0
+2025-01-26 17:06:40.882 DEBUG 4620 --- [http-nio-8081-exec-2] com.hsj.hmdp.dao.ShopMapper.selectById   : ==>  Preparing: SELECT id,name,type_id,images,area,address,x,y,avg_price,sold,comments,score,open_hours,create_time,update_time FROM tb_shop WHERE id=?
+2025-01-26 17:06:40.882 DEBUG 4620 --- [http-nio-8081-exec-2] com.hsj.hmdp.dao.ShopMapper.selectById   : ==> Parameters: 1(Long)
+2025-01-26 17:06:40.904 DEBUG 4620 --- [http-nio-8081-exec-2] com.hsj.hmdp.dao.ShopMapper.selectById   : <==      Total: 1
+2025-01-26 17:06:58.728  INFO 4620 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2025-01-26 17:06:58.728  INFO 4620 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-26 17:06:58.732  INFO 4620 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-26 18:02:11.217  INFO 32420 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 32420 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
+2025-01-26 18:02:11.219 DEBUG 32420 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
+2025-01-26 18:02:11.219  INFO 32420 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
+2025-01-26 18:02:11.587  INFO 32420 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-01-26 18:02:11.588  INFO 32420 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-26 18:02:11.603  INFO 32420 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 0 Redis repository interfaces.
+2025-01-26 18:02:11.892  INFO 32420 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2025-01-26 18:02:11.897  INFO 32420 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-26 18:02:11.897  INFO 32420 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2025-01-26 18:02:11.947  INFO 32420 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-26 18:02:11.948  INFO 32420 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 706 ms
+2025-01-26 18:02:13.188  INFO 32420 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2025-01-26 18:02:13.375  INFO 32420 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2025-01-26 18:02:13.381  INFO 32420 --- [main] com.hsj.hmdp.HmdpApplication             : Started HmdpApplication in 2.394 seconds (JVM running for 2.956)
+2025-01-26 18:02:43.226  INFO 32420 --- [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-26 18:02:43.226  INFO 32420 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-26 18:02:43.231  INFO 32420 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2025-01-26 18:02:50.415 DEBUG 32420 --- [http-nio-8081-exec-5] com.hsj.hmdp.service.IUserServiceImpl    : 验证码成功生成，为：210040
+2025-01-26 18:02:54.760  INFO 32420 --- [http-nio-8081-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-26 18:02:55.116  INFO 32420 --- [http-nio-8081-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-26 18:02:55.120 DEBUG 32420 --- [http-nio-8081-exec-3] com.hsj.hmdp.dao.UserMapper.selectOne    : ==>  Preparing: SELECT id,phone,password,nick_name,icon,create_time,update_time FROM tb_user WHERE (phone = ?)
+2025-01-26 18:02:55.130 DEBUG 32420 --- [http-nio-8081-exec-3] com.hsj.hmdp.dao.UserMapper.selectOne    : ==> Parameters: 18050285529(String)
+2025-01-26 18:02:55.161 DEBUG 32420 --- [http-nio-8081-exec-3] com.hsj.hmdp.dao.UserMapper.selectOne    : <==      Total: 1
+2025-01-26 18:02:55.488 DEBUG 32420 --- [http-nio-8081-exec-4] c.h.hmdp.dao.ShopTypeMapper.selectList   : ==>  Preparing: SELECT id,name,icon,sort,create_time,update_time FROM tb_shop_type
+2025-01-26 18:02:55.488 DEBUG 32420 --- [http-nio-8081-exec-4] c.h.hmdp.dao.ShopTypeMapper.selectList   : ==> Parameters: 
+2025-01-26 18:02:55.517 DEBUG 32420 --- [http-nio-8081-exec-4] c.h.hmdp.dao.ShopTypeMapper.selectList   : <==      Total: 10
+2025-01-26 18:03:18.297  INFO 32420 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2025-01-26 18:03:18.297  INFO 32420 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-26 18:03:18.301  INFO 32420 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-26 18:09:31.140  INFO 25212 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 25212 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
+2025-01-26 18:09:31.142 DEBUG 25212 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
+2025-01-26 18:09:31.142  INFO 25212 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
+2025-01-26 18:09:31.519  INFO 25212 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-01-26 18:09:31.520  INFO 25212 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-26 18:09:31.534  INFO 25212 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 0 Redis repository interfaces.
+2025-01-26 18:09:31.825  INFO 25212 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2025-01-26 18:09:31.830  INFO 25212 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-26 18:09:31.830  INFO 25212 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2025-01-26 18:09:31.883  INFO 25212 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-26 18:09:31.883  INFO 25212 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 719 ms
+2025-01-26 18:09:33.220  INFO 25212 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2025-01-26 18:09:33.408  INFO 25212 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2025-01-26 18:09:33.416  INFO 25212 --- [main] com.hsj.hmdp.HmdpApplication             : Started HmdpApplication in 2.503 seconds (JVM running for 3.06)
+2025-01-26 18:09:36.195  INFO 25212 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-26 18:09:36.196  INFO 25212 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-26 18:09:36.205  INFO 25212 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2025-01-26 18:09:39.223 DEBUG 25212 --- [http-nio-8081-exec-4] com.hsj.hmdp.service.IUserServiceImpl    : 验证码成功生成，为：172256
+2025-01-26 18:09:48.408  INFO 25212 --- [http-nio-8081-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-26 18:09:48.711  INFO 25212 --- [http-nio-8081-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-26 18:09:48.714 DEBUG 25212 --- [http-nio-8081-exec-3] com.hsj.hmdp.dao.UserMapper.selectOne    : ==>  Preparing: SELECT id,phone,password,nick_name,icon,create_time,update_time FROM tb_user WHERE (phone = ?)
+2025-01-26 18:09:48.724 DEBUG 25212 --- [http-nio-8081-exec-3] com.hsj.hmdp.dao.UserMapper.selectOne    : ==> Parameters: 18050285529(String)
+2025-01-26 18:09:48.752 DEBUG 25212 --- [http-nio-8081-exec-3] com.hsj.hmdp.dao.UserMapper.selectOne    : <==      Total: 1
+2025-01-26 18:11:47.692  INFO 25212 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2025-01-26 18:11:47.693  INFO 25212 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-26 18:11:47.695  INFO 25212 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-26 18:12:32.326  INFO 7904 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 7904 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
+2025-01-26 18:12:32.328 DEBUG 7904 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
+2025-01-26 18:12:32.328  INFO 7904 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
+2025-01-26 18:12:32.726  INFO 7904 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-01-26 18:12:32.727  INFO 7904 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-26 18:12:32.743  INFO 7904 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 0 Redis repository interfaces.
+2025-01-26 18:12:33.081  INFO 7904 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2025-01-26 18:12:33.087  INFO 7904 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-26 18:12:33.088  INFO 7904 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2025-01-26 18:12:33.150  INFO 7904 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-26 18:12:33.150  INFO 7904 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 797 ms
+2025-01-26 18:12:34.476  INFO 7904 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2025-01-26 18:12:34.649  INFO 7904 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2025-01-26 18:12:34.656  INFO 7904 --- [main] com.hsj.hmdp.HmdpApplication             : Started HmdpApplication in 2.574 seconds (JVM running for 3.145)
+2025-01-26 18:12:36.652  INFO 7904 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-26 18:12:36.653  INFO 7904 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-26 18:12:36.658  INFO 7904 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2025-01-26 18:13:08.546  INFO 7904 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2025-01-26 18:15:22.434  INFO 24928 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 24928 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
+2025-01-26 18:15:22.436 DEBUG 24928 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
+2025-01-26 18:15:22.436  INFO 24928 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
+2025-01-26 18:15:22.799  INFO 24928 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-01-26 18:15:22.800  INFO 24928 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-26 18:15:22.815  INFO 24928 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 0 Redis repository interfaces.
+2025-01-26 18:15:23.095  INFO 24928 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2025-01-26 18:15:23.100  INFO 24928 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-26 18:15:23.100  INFO 24928 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2025-01-26 18:15:23.149  INFO 24928 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-26 18:15:23.149  INFO 24928 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 690 ms
+2025-01-26 18:15:24.454  INFO 24928 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2025-01-26 18:15:24.669  INFO 24928 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2025-01-26 18:15:24.676  INFO 24928 --- [main] com.hsj.hmdp.HmdpApplication             : Started HmdpApplication in 2.465 seconds (JVM running for 3.004)
+2025-01-26 18:15:29.214  INFO 24928 --- [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-26 18:15:29.214  INFO 24928 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-26 18:15:29.224  INFO 24928 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms
+2025-01-26 18:16:04.976  INFO 24928 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2025-01-26 18:35:20.609  INFO 31248 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 31248 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
+2025-01-26 18:35:20.610 DEBUG 31248 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
+2025-01-26 18:35:20.610  INFO 31248 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
+2025-01-26 18:35:20.995  INFO 31248 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-01-26 18:35:20.996  INFO 31248 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-26 18:35:21.011  INFO 31248 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 0 Redis repository interfaces.
+2025-01-26 18:35:21.323  INFO 31248 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2025-01-26 18:35:21.328  INFO 31248 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-26 18:35:21.329  INFO 31248 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2025-01-26 18:35:21.381  INFO 31248 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-26 18:35:21.382  INFO 31248 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 747 ms
+2025-01-26 18:35:22.732  INFO 31248 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2025-01-26 18:35:22.937  INFO 31248 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2025-01-26 18:35:22.944  INFO 31248 --- [main] com.hsj.hmdp.HmdpApplication             : Started HmdpApplication in 2.575 seconds (JVM running for 3.114)
+2025-01-26 18:35:26.222  INFO 31248 --- [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-26 18:35:26.223  INFO 31248 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-26 18:35:26.232  INFO 31248 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2025-01-26 18:35:26.754  INFO 31248 --- [http-nio-8081-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-26 18:35:27.164  INFO 31248 --- [http-nio-8081-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-26 18:35:27.167 DEBUG 31248 --- [http-nio-8081-exec-1] c.h.hmdp.dao.ShopTypeMapper.selectList   : ==>  Preparing: SELECT id,name,icon,sort,create_time,update_time FROM tb_shop_type
+2025-01-26 18:35:27.178 DEBUG 31248 --- [http-nio-8081-exec-1] c.h.hmdp.dao.ShopTypeMapper.selectList   : ==> Parameters: 
+2025-01-26 18:35:27.216 DEBUG 31248 --- [http-nio-8081-exec-1] c.h.hmdp.dao.ShopTypeMapper.selectList   : <==      Total: 10
+2025-01-26 18:35:29.503 DEBUG 31248 --- [http-nio-8081-exec-3] com.hsj.hmdp.service.IUserServiceImpl    : 验证码成功生成，为：827290
+2025-01-26 18:35:37.566 DEBUG 31248 --- [http-nio-8081-exec-4] com.hsj.hmdp.dao.UserMapper.selectOne    : ==>  Preparing: SELECT id,phone,password,nick_name,icon,create_time,update_time FROM tb_user WHERE (phone = ?)
+2025-01-26 18:35:37.567 DEBUG 31248 --- [http-nio-8081-exec-4] com.hsj.hmdp.dao.UserMapper.selectOne    : ==> Parameters: 18050285529(String)
+2025-01-26 18:35:37.594 DEBUG 31248 --- [http-nio-8081-exec-4] com.hsj.hmdp.dao.UserMapper.selectOne    : <==      Total: 1
+2025-01-26 18:35:51.001  INFO 31248 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2025-01-26 18:35:51.002  INFO 31248 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-26 18:35:51.005  INFO 31248 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-26 18:39:10.297  INFO 30592 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 30592 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
+2025-01-26 18:39:10.299 DEBUG 30592 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
+2025-01-26 18:39:10.299  INFO 30592 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
+2025-01-26 18:39:10.692  INFO 30592 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-01-26 18:39:10.693  INFO 30592 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-26 18:39:10.708  INFO 30592 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 0 Redis repository interfaces.
+2025-01-26 18:39:10.993  INFO 30592 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2025-01-26 18:39:10.998  INFO 30592 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-26 18:39:10.999  INFO 30592 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2025-01-26 18:39:11.049  INFO 30592 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-26 18:39:11.049  INFO 30592 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 727 ms
+2025-01-26 18:39:12.458  INFO 30592 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2025-01-26 18:39:12.656  INFO 30592 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2025-01-26 18:39:12.663  INFO 30592 --- [main] com.hsj.hmdp.HmdpApplication             : Started HmdpApplication in 2.594 seconds (JVM running for 3.154)
+2025-01-26 18:39:13.642  INFO 30592 --- [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-26 18:39:13.642  INFO 30592 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-26 18:39:13.647  INFO 30592 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2025-01-26 18:39:33.039  INFO 30592 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2025-01-26 18:40:15.917  INFO 30704 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 30704 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
+2025-01-26 18:40:15.919 DEBUG 30704 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
+2025-01-26 18:40:15.919  INFO 30704 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
+2025-01-26 18:40:16.303  INFO 30704 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-01-26 18:40:16.304  INFO 30704 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-26 18:40:16.320  INFO 30704 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 0 Redis repository interfaces.
+2025-01-26 18:40:16.655  INFO 30704 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2025-01-26 18:40:16.660  INFO 30704 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-26 18:40:16.661  INFO 30704 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2025-01-26 18:40:16.715  INFO 30704 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-26 18:40:16.716  INFO 30704 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 772 ms
+2025-01-26 18:40:18.031  INFO 30704 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2025-01-26 18:40:18.199  INFO 30704 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2025-01-26 18:40:18.206  INFO 30704 --- [main] com.hsj.hmdp.HmdpApplication             : Started HmdpApplication in 2.532 seconds (JVM running for 3.096)
+2025-01-26 18:40:22.064  INFO 30704 --- [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-26 18:40:22.064  INFO 30704 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-26 18:40:22.069  INFO 30704 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2025-01-26 18:40:41.246  INFO 30704 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2025-01-26 18:40:55.559  INFO 27668 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 27668 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
+2025-01-26 18:40:55.560 DEBUG 27668 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
+2025-01-26 18:40:55.562  INFO 27668 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
+2025-01-26 18:40:55.940  INFO 27668 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-01-26 18:40:55.941  INFO 27668 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-26 18:40:55.956  INFO 27668 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 0 Redis repository interfaces.
+2025-01-26 18:40:56.238  INFO 27668 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2025-01-26 18:40:56.243  INFO 27668 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-26 18:40:56.243  INFO 27668 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2025-01-26 18:40:56.293  INFO 27668 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-26 18:40:56.293  INFO 27668 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 709 ms
+2025-01-26 18:40:57.584  INFO 27668 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2025-01-26 18:40:57.808  INFO 27668 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2025-01-26 18:40:57.817  INFO 27668 --- [main] com.hsj.hmdp.HmdpApplication             : Started HmdpApplication in 2.479 seconds (JVM running for 3.021)
+2025-01-26 18:41:01.772  INFO 27668 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-26 18:41:01.772  INFO 27668 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-26 18:41:01.783  INFO 27668 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 11 ms
+2025-01-26 18:41:02.365  INFO 27668 --- [http-nio-8081-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-26 18:41:02.682  INFO 27668 --- [http-nio-8081-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-26 18:41:02.686 DEBUG 27668 --- [http-nio-8081-exec-2] com.hsj.hmdp.dao.ShopMapper.selectPage   : ==>  Preparing: SELECT id,name,type_id,images,area,address,x,y,avg_price,sold,comments,score,open_hours,create_time,update_time FROM tb_shop WHERE (type_id = ?)
+2025-01-26 18:41:02.696 DEBUG 27668 --- [http-nio-8081-exec-2] com.hsj.hmdp.dao.ShopMapper.selectPage   : ==> Parameters: 1(Integer)
+2025-01-26 18:41:02.723 DEBUG 27668 --- [http-nio-8081-exec-2] com.hsj.hmdp.dao.ShopMapper.selectPage   : <==      Total: 9
+2025-01-26 18:41:14.955 DEBUG 27668 --- [http-nio-8081-exec-3] com.hsj.hmdp.dao.ShopMapper.selectById   : ==>  Preparing: SELECT id,name,type_id,images,area,address,x,y,avg_price,sold,comments,score,open_hours,create_time,update_time FROM tb_shop WHERE id=?
+2025-01-26 18:41:14.956 DEBUG 27668 --- [http-nio-8081-exec-3] com.hsj.hmdp.dao.ShopMapper.selectById   : ==> Parameters: 1(Long)
+2025-01-26 18:41:14.974 DEBUG 27668 --- [http-nio-8081-exec-3] com.hsj.hmdp.dao.ShopMapper.selectById   : <==      Total: 1
+2025-01-26 18:41:21.009  INFO 27668 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2025-01-26 18:41:21.009  INFO 27668 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-26 18:41:21.012  INFO 27668 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-26 18:42:35.223  INFO 20656 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 20656 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
+2025-01-26 18:42:35.224 DEBUG 20656 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
+2025-01-26 18:42:35.225  INFO 20656 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
+2025-01-26 18:42:35.612  INFO 20656 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-01-26 18:42:35.612  INFO 20656 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-26 18:42:35.629  INFO 20656 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 0 Redis repository interfaces.
+2025-01-26 18:42:35.924  INFO 20656 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2025-01-26 18:42:35.930  INFO 20656 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-26 18:42:35.930  INFO 20656 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2025-01-26 18:42:35.982  INFO 20656 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-26 18:42:35.982  INFO 20656 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 733 ms
+2025-01-26 18:42:37.330  INFO 20656 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2025-01-26 18:42:37.539  INFO 20656 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2025-01-26 18:42:37.547  INFO 20656 --- [main] com.hsj.hmdp.HmdpApplication             : Started HmdpApplication in 2.553 seconds (JVM running for 3.11)
+2025-01-26 18:42:41.924  INFO 20656 --- [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-26 18:42:41.925  INFO 20656 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-26 18:42:41.940  INFO 20656 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 14 ms
+2025-01-26 18:43:13.256  INFO 20656 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2025-01-26 18:45:36.043  INFO 10244 --- [main] com.hsj.hmdp.HmdpApplication             : Starting HmdpApplication on DESKTOP-JFH821A with PID 10244 (E:\hmdp\my_heima_dianping\target\classes started by ZhuanZ in E:\hmdp\my_heima_dianping)
+2025-01-26 18:45:36.045 DEBUG 10244 --- [main] com.hsj.hmdp.HmdpApplication             : Running with Spring Boot v2.3.12.RELEASE, Spring v5.2.15.RELEASE
+2025-01-26 18:45:36.045  INFO 10244 --- [main] com.hsj.hmdp.HmdpApplication             : No active profile set, falling back to default profiles: default
+2025-01-26 18:45:36.420  INFO 10244 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-01-26 18:45:36.422  INFO 10244 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-26 18:45:36.436  INFO 10244 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 0 Redis repository interfaces.
+2025-01-26 18:45:36.821  INFO 10244 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2025-01-26 18:45:36.831  INFO 10244 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-26 18:45:36.832  INFO 10244 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2025-01-26 18:45:36.912  INFO 10244 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-26 18:45:36.912  INFO 10244 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 844 ms
+2025-01-26 18:45:38.305  INFO 10244 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2025-01-26 18:45:38.526  INFO 10244 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2025-01-26 18:45:38.534  INFO 10244 --- [main] com.hsj.hmdp.HmdpApplication             : Started HmdpApplication in 2.73 seconds (JVM running for 3.277)
+2025-01-26 18:45:43.462  INFO 10244 --- [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-26 18:45:43.462  INFO 10244 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-26 18:45:43.471  INFO 10244 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2025-01-26 18:45:44.059  INFO 10244 --- [http-nio-8081-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-26 18:45:44.379  INFO 10244 --- [http-nio-8081-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-26 18:45:44.382 DEBUG 10244 --- [http-nio-8081-exec-1] com.hsj.hmdp.dao.ShopMapper.selectPage   : ==>  Preparing: SELECT id,name,type_id,images,area,address,x,y,avg_price,sold,comments,score,open_hours,create_time,update_time FROM tb_shop WHERE (type_id = ?)
+2025-01-26 18:45:44.393 DEBUG 10244 --- [http-nio-8081-exec-1] com.hsj.hmdp.dao.ShopMapper.selectPage   : ==> Parameters: 1(Integer)
+2025-01-26 18:45:44.432 DEBUG 10244 --- [http-nio-8081-exec-1] com.hsj.hmdp.dao.ShopMapper.selectPage   : <==      Total: 9
+2025-01-26 18:45:50.436  INFO 10244 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2025-01-26 18:45:50.436  INFO 10244 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-26 18:45:50.439  INFO 10244 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

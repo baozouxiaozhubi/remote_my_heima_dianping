@@ -1,5 +1,7 @@
 package com.hsj.hmdp.controller;
 
+import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hsj.hmdp.dto.Result;
 import com.hsj.hmdp.service.IShopService;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +22,12 @@ public class ShopController {
     //Restful风格传参
     @GetMapping("/{id}")
     public Result queryShopById(@PathVariable("id") Long id) {
-        return shopService.queryWithMutex(id);
+        //使用工具类，解决缓存穿透问题
         //return shopService.queryById(id);
+        //使用工具类，采用逻辑删除方案解决缓存击穿问题，未解决缓存穿透问题
+        //return shopService.queryWithLogicalExpireById(id);
+        //使用工具类，采用互斥锁方案解决缓存击穿问题，解决l缓存穿透问题
+        return shopService.queryWithMutexById(id);
     }
 
     /**
@@ -48,5 +54,20 @@ public class ShopController {
         return shopService.update(shop);
     }
 
-
+    /**
+     * 根据商铺类型分页查询商铺信息
+     * @param typeId 商铺类型
+     * @param current 页码
+     * @return 商铺列表
+     */
+    @GetMapping("/of/type")
+    public Result queryShopByType(
+            @RequestParam("typeId") Integer typeId,
+            @RequestParam(value = "current", defaultValue = "1") Integer current,
+            @RequestParam(value = "x", required = false) Double x,
+            @RequestParam(value = "y", required = false) Double y
+    ) {
+        return shopService.queryShopByType(typeId, current, null, null);
+    }
+    
 }

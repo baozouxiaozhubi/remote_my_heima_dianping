@@ -7,7 +7,9 @@ import com.hsj.hmdp.pojo.Shop;
 public interface IShopService extends IService<Shop> {
     Result queryById(Long id);
 
-    Result queryWithMutex(Long id);
+    Result queryWithLogicalExpireById(Long id);
+
+    Result queryWithMutexById(Long id);
 
     Result update(Shop shop);
 
