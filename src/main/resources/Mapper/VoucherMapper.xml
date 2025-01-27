@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hsj.hmdp.dao.VoucherMapper">
+
+    <select id="queryVoucherOfShop" resultType="com.hsj.hmdp.pojo.Voucher" parameterType="java.lang.Long">
+        SELECT
+            v.`id`, v.`shop_id`, v.`title`, v.`sub_title`, v.`rules`, v.`pay_value`,
+            v.`actual_value`, v.`type`, sv.`stock` ,
+            COALESCE(sv.begin_time, NOW()) AS begin_time,
+            COALESCE(sv.end_time, DATE_ADD(NOW(), INTERVAL 1 DAY)) AS end_time
+        FROM tb_voucher v
+        LEFT JOIN  tb_seckill_voucher sv ON v.id = sv.voucher_id
+        WHERE v.shop_id = #{shopId} AND v.status = 1
+    </select>
+</mapper>

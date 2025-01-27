@@ -102,7 +102,7 @@ public class IUserServiceImpl extends ServiceImpl<UserMapper, User> implements I
         }
         //7.1 随机生成token作为登陆令牌(UUID或者雪花算法) UUID.randomUUID().toString();
         Snowflake snowflake = SnowflakeSingleton.getSnowflake(); //通过单例类获取雪花算法执行器
-        String token=snowflake.nextIdStr(); //获取雪花ID
+        String token = snowflake.nextIdStr(); //获取雪花ID
         //7.2 将User对象转为HashMap存储 过滤敏感信息:使用hutool的BeanUtil.copyProperties类
         UserDto userDto = BeanUtil.copyProperties(user,UserDto.class);
         Map<String,Object> userDtoMapObject = BeanUtil.beanToMap(userDto);
