@@ -18,8 +18,9 @@ public final class Constants {
     public static final String USER_SIGN_KEY = "sign:";
     public static final String IMAGE_UPLOAD_DIR = "E:\\hmdp\\nginx-1.18.0\\html\\hmdp\\imgs";
     public static final String USER_NICK_NAME_PREFIX = "user_";
+    public static final String ID_PREFIX_ORDER = "order";
 
-    public static final Long LOGIN_TOKEN_TTL = 5L; //用于登陆的验证码的token过期时间
+    public static final Long LOGIN_TOKEN_TTL = 60L; //用于登陆的验证码的token过期时间
     public static final Long CACHE_SHOP_TTL = 30L;
     public static final Long CACHE_SHOP_NULL_TTL = 3L;
     public static final Long REDIS_SETNX_TTL = 10L;///用于防止缓存穿透的空值的过期时间
