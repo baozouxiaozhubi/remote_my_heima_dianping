@@ -1,6 +1,5 @@
 package com.hsj.hmdp.service;
 
-import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hsj.hmdp.dao.ShopMapper;
@@ -8,17 +7,10 @@ import com.hsj.hmdp.dto.Result;
 import com.hsj.hmdp.pojo.Shop;
 import com.hsj.hmdp.utils.CacheClient;
 import com.hsj.hmdp.utils.Constants;
-import io.lettuce.core.ScriptOutputType;
-import org.springframework.data.geo.Distance;
-import org.springframework.data.geo.GeoResult;
-import org.springframework.data.geo.GeoResults;
-import org.springframework.data.redis.connection.RedisGeoCommands;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.domain.geo.GeoReference;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Resource;
 

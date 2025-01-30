@@ -21,7 +21,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
@@ -75,7 +74,7 @@ public class IUserServiceImpl extends ServiceImpl<UserMapper, User> implements I
         return Result.ok();
     }
 
-    //用户输入手机号+密码/验证码 后端登陆功能+未注册用户注册-基于redis未实现
+    //用户输入手机号+密码/验证码 后端登陆功能+未注册用户注册-基于redis已实现
     @Override
     public Result login(LoginFormDTO loginFormDTO, HttpSession session) {
         //1.校验手机号

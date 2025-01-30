@@ -31,6 +31,19 @@ public class IVoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vo
     @Resource
     private RedissonClient redissonClient;
 
+    //第二版 异步秒杀逻辑
+    @Override
+    public Result seckillVoucher(Long voucherId) {
+        return null;
+    }
+
+    //第二版 异步秒杀逻辑
+    @Override
+    public Result createVoucherOrder(Long voucherId) {
+        return null;
+    }
+
+    /*** 第一版 同步秒杀逻辑
     @Override
     public Result seckillVoucher(Long voucherId) {
 
@@ -84,7 +97,10 @@ public class IVoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vo
         }
         return null;
     }
+    ***/
 
+    /***
+    //保证【判断资格】和【创建订单】的原子性
     @Transactional
     public Result createVoucherOrder(Long voucherId)
     {
@@ -97,14 +113,16 @@ public class IVoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vo
         }
 
         //5.未购买过则扣减库存--需要避免并发问题(1.在SQL语句加上where stock>0 2.乐观锁-版本号法 3.乐观锁-CAS)
-        //乐观锁
+
+        //乐观锁--版本号法
 //        boolean success = seckillVoucherService.update()
 //                .setSql("stock = stock - 1")
 //                .eq("voucher_id",voucherId)
 //                .eq("stock",seckillVoucher.getStock())
 //                .update();
 //        if(!success)return Result.fail("库存不足");
-        //乐观锁改进 只在修改时候判断stock>0
+
+        //乐观锁改进=1 只在修改时候判断stock>0
         int flag = getBaseMapper().stock_minus(voucherId);
         if (flag == 0) {
             return Result.fail("库存不足");
@@ -121,6 +139,6 @@ public class IVoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vo
         newVoucherOrder.setVoucherId(voucherId);
         save(newVoucherOrder);
         return Result.ok(orderId);
-    }//@Transactional注释加在方法上 结束之后还需要提交事务
-    //先释放锁在提交事务，在这段时间中还可能出现线程安全问题--所以应该加在方法外，先提交事务再释放锁
+    }//@Transactional注释加在方法上 结束之后还需要提交事务 先释放锁在提交事务，在这段时间中还可能出现线程安全问题--所以应该加在方法外，先提交事务再释放锁
+    ***/
 }

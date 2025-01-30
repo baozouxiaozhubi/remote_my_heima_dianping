@@ -2,7 +2,6 @@ package com.hsj.hmdp.controller;
 
 import com.hsj.hmdp.dto.Result;
 import com.hsj.hmdp.pojo.Voucher;
-import com.hsj.hmdp.pojo.SeckillVoucher;
 import com.hsj.hmdp.service.IVoucherService;
 import org.springframework.web.bind.annotation.*;
 

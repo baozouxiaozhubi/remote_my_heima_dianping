@@ -3,7 +3,6 @@ package com.hsj.hmdp.controller;
 import com.hsj.hmdp.dto.LoginFormDTO;
 import com.hsj.hmdp.dto.Result;
 import com.hsj.hmdp.dto.UserDto;
-import com.hsj.hmdp.pojo.User;
 import com.hsj.hmdp.service.IUserService;
 import com.hsj.hmdp.utils.UserContext;
 import org.springframework.beans.factory.annotation.Autowired;
