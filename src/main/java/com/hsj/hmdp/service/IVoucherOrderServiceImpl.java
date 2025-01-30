@@ -3,18 +3,24 @@ package com.hsj.hmdp.service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hsj.hmdp.dao.VoucherOrderMapper;
 import com.hsj.hmdp.dto.Result;
-import com.hsj.hmdp.pojo.SeckillVoucher;
 import com.hsj.hmdp.pojo.VoucherOrder;
 import com.hsj.hmdp.utils.*;
-import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.aop.framework.AopContext;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import org.springframework.data.redis.core.script.DefaultRedisScript;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class IVoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, VoucherOrder> implements IVoucherOrderService {
@@ -31,13 +37,84 @@ public class IVoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vo
     @Resource
     private RedissonClient redissonClient;
 
-    //第二版 异步秒杀逻辑
-    @Override
-    public Result seckillVoucher(Long voucherId) {
-        return null;
+    private IVoucherOrderService proxy; //事务代理对象 由于只有主线程能获取事务代理对象，然而子线程中要调用，因此把作用域提前
+    private BlockingQueue<VoucherOrder> orderTasks = new ArrayBlockingQueue<>(1024*1024);//最多1024个订单等待创建
+    private static final ExecutorService SECKILL_ORDER_EXECUTOR = Executors.newSingleThreadExecutor();//用单线程线程池，因为Redis已经实现了订单创建功能，数据库就没有性能要求了
+
+    @PostConstruct //@PostConstruct注解，会在整个Bean构建并完成依赖注入后执行方法
+    private void init() {
+        SECKILL_ORDER_EXECUTOR.submit(new VOucherOrderHandler());
+    }
+    //用于从阻塞队列中获取订单信息并创建订单
+    private class VOucherOrderHandler implements Runnable {
+        @Override
+        public void run() {
+            while(true)
+            {
+                try{
+                    //从阻塞队列中获取订单信息
+                    VoucherOrder voucherOrder = orderTasks.take();
+                    //创建订单
+                    //由于在Redis中已经做了秒杀资格判断和库存判断了，所以其实这里不用加锁
+                    proxy.createVoucherOrder(voucherOrder);
+                }
+                catch (Exception e){
+                    log.error("处理订单异常",e);
+                }
+            }
+        }
     }
 
-    //第二版 异步秒杀逻辑
+    //第二版 异步秒杀逻辑的创建订单函数
+    @Override
+    @Transactional
+    public void createVoucherOrder(VoucherOrder voucherorder) {
+        save(voucherorder);
+    }
+
+    //Lua脚本预先读取
+    private static final DefaultRedisScript<Long> SECKILL_SCRIPT;
+    static
+    {
+        SECKILL_SCRIPT = new DefaultRedisScript<>();
+        SECKILL_SCRIPT.setResultType(Long.class);
+        SECKILL_SCRIPT.setLocation(new ClassPathResource("seckill.lua"));
+    }
+
+    //第二版 异步秒杀逻辑的下单函数
+    @Override
+    public Result seckillVoucher(Long voucherId) {
+        //0. 获取用户Id
+        Long userId = UserContext.getUser().getId();
+        //1. 执行Lua脚本
+        Long r = stringRedisTemplate.execute(
+                SECKILL_SCRIPT,
+                Collections.emptyList(),
+                voucherId.toString(),userId.toString()
+                );
+        //2. 判断结果是否为0
+        if(r!=0)
+        {
+            //3. 不为0代表没有购买资格，直接返回错误信息
+            return Result.fail(r==1?"库存不足":"请勿重复下单");
+        }
+        //4. 为0，代表有购买资格，把用户信息保存到阻塞队列中
+        //TODO：保存到阻塞队列中
+        //新建一个VoucherOrder对象用于保存用户信息
+        VoucherOrder newVoucherOrder = new VoucherOrder();
+        long orderId=redisIdWorker.nextId(Constants.ID_PREFIX_ORDER);
+        newVoucherOrder.setId(orderId);
+        //设置用户Id
+        newVoucherOrder.setUserId(userId);
+        //获取代金券Id
+        newVoucherOrder.setVoucherId(voucherId);
+        //放入阻塞队列，首先初始化事务代理对象(只有主线程能获取)
+        proxy = (IVoucherOrderService) AopContext.currentProxy();
+        orderTasks.add(newVoucherOrder);
+        //5. 返回订单Id
+        return Result.ok(orderId);
+    }
+
     @Override
     public Result createVoucherOrder(Long voucherId) {
         return null;
@@ -86,7 +163,7 @@ public class IVoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vo
             return Result.fail("请不要重复下单");
         }
         try {
-            IVoucherOrderService proxy = (IVoucherOrderService) AopContext.currentProxy();
+            proxy = (IVoucherOrderService) AopContext.currentProxy();
             return proxy.createVoucherOrder(voucherId);
         }
         catch(Exception e) {
@@ -99,7 +176,7 @@ public class IVoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vo
     }
     ***/
 
-    /***
+    /***第一版 同步下单的创建订单函数
     //保证【判断资格】和【创建订单】的原子性
     @Transactional
     public Result createVoucherOrder(Long voucherId)

@@ -25,5 +25,5 @@ end
 -- 3.3 扣库存
 redis.call('incrby', stockKey, -1)
 -- 3.4 下单，即把用户Id保存到集合中
-redis.call('add', orderKey, userid)
+redis.call('sadd', orderKey, userid)
 return 0
