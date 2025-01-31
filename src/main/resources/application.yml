@@ -31,3 +31,11 @@ logging:
     name: logs\app.logs
     max-size: 10MB
     max-history: 7
+rocketmq:
+  name-server: 121.40.226.231:9876
+  producer:
+    group: producer-group
+  consumer:
+    group: consumer-group
+    enableDlq: true #开启死信机制
+    retryTimesWhenConsumeFailed: 16  # 失败后最大重试 16 次

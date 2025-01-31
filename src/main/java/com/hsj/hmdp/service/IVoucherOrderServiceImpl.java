@@ -1,9 +1,11 @@
 package com.hsj.hmdp.service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hsj.hmdp.consumer.VoucherOrderConsumer;
 import com.hsj.hmdp.dao.VoucherOrderMapper;
 import com.hsj.hmdp.dto.Result;
 import com.hsj.hmdp.pojo.VoucherOrder;
+import com.hsj.hmdp.producer.VoucherOrderProducer;
 import com.hsj.hmdp.utils.*;
 import org.redisson.api.RedissonClient;
 import org.springframework.aop.framework.AopContext;
@@ -37,23 +39,31 @@ public class IVoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vo
     @Resource
     private RedissonClient redissonClient;
 
+    @Resource
+    private VoucherOrderProducer voucherOrderProducer; //第二种方案：使用RocketMQ消息队列
+    //只需要使用@RocketMQMessageListener注释注册消费者，Spring就会自动监听并阻塞等待，
+
     private IVoucherOrderService proxy; //事务代理对象 由于只有主线程能获取事务代理对象，然而子线程中要调用，因此把作用域提前
-    private BlockingQueue<VoucherOrder> orderTasks = new ArrayBlockingQueue<>(1024*1024);//最多1024个订单等待创建
+    private BlockingQueue<VoucherOrder> orderTasks = new ArrayBlockingQueue<>(1024*1024);//初始化阻塞队列，最多1024个订单等待创建
     private static final ExecutorService SECKILL_ORDER_EXECUTOR = Executors.newSingleThreadExecutor();//用单线程线程池，因为Redis已经实现了订单创建功能，数据库就没有性能要求了
 
     @PostConstruct //@PostConstruct注解，会在整个Bean构建并完成依赖注入后执行方法
     private void init() {
-        SECKILL_ORDER_EXECUTOR.submit(new VOucherOrderHandler());
+        //SECKILL_ORDER_EXECUTOR.submit(new VoucherOrderHandler());
     }
-    //用于从阻塞队列中获取订单信息并创建订单
-    private class VOucherOrderHandler implements Runnable {
+
+    //用于从阻塞队列/消息队列中获取订单信息并创建订单
+    private class VoucherOrderHandler implements Runnable {
         @Override
         public void run() {
             while(true)
             {
                 try{
-                    //从阻塞队列中获取订单信息
+                    //第一种方案从阻塞队列中获取订单信息
                     VoucherOrder voucherOrder = orderTasks.take();
+
+                    //第二种方案：从RocketMQ中获取订单信息(放在消费者类中写了)
+
                     //创建订单
                     //由于在Redis中已经做了秒杀资格判断和库存判断了，所以其实这里不用加锁
                     proxy.createVoucherOrder(voucherOrder);
@@ -65,7 +75,7 @@ public class IVoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vo
         }
     }
 
-    //第二版 异步秒杀逻辑的创建订单函数
+    //第二版 异步秒杀逻辑的创建订单函数--BlockingQueue实现
     @Override
     @Transactional
     public void createVoucherOrder(VoucherOrder voucherorder) {
@@ -79,9 +89,10 @@ public class IVoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vo
         SECKILL_SCRIPT = new DefaultRedisScript<>();
         SECKILL_SCRIPT.setResultType(Long.class);
         SECKILL_SCRIPT.setLocation(new ClassPathResource("seckill.lua"));
+
     }
 
-    //第二版 异步秒杀逻辑的下单函数
+    //第二版 异步秒杀逻辑的下单函数--包含BlockingQueue实现和消息队列实现
     @Override
     public Result seckillVoucher(Long voucherId) {
         //0. 获取用户Id
@@ -108,9 +119,16 @@ public class IVoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vo
         newVoucherOrder.setUserId(userId);
         //获取代金券Id
         newVoucherOrder.setVoucherId(voucherId);
-        //放入阻塞队列，首先初始化事务代理对象(只有主线程能获取)
+
+        //首先初始化事务代理对象(只有主线程能获取)-放入消费者类
         proxy = (IVoucherOrderService) AopContext.currentProxy();
-        orderTasks.add(newVoucherOrder);
+
+        //第一种方案：放入阻塞队列(BlockingQue实现)
+        //orderTasks.add(newVoucherOrder);
+
+        //第二种方案：放入RocketMQ
+        voucherOrderProducer.sendVoucherOrderAsync(newVoucherOrder);
+
         //5. 返回订单Id
         return Result.ok(orderId);
     }

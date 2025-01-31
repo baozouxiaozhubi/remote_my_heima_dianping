@@ -93,6 +93,17 @@
             <artifactId>redisson</artifactId>
             <version>3.13.6</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-spring-boot-starter</artifactId>
+            <version>2.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-client-java</artifactId>
+            <version>5.0.7</version>
+            <type>pom</type>
+        </dependency>
     </dependencies>
 
     <build>
