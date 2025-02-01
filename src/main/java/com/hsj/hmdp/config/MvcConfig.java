@@ -31,11 +31,13 @@ public class MvcConfig implements WebMvcConfigurer {
         //注册基于redis的拦截器
         registry.addInterceptor(new LoginInterceptor_redis())
             .excludePathPatterns(
-                    "/user/code",
-                    "/user/login",
                     "/shop/**",
+                    "/voucher/**",
                     "/shop-type/**",
-                    "/voucher/**"
+                    "/upload/**",
+                    "/blog/hot",
+                    "/user/code",
+                    "/user/login"
             ).order(1);
     }
 }
