@@ -1,7 +1,10 @@
 package com.hsj.hmdp.controller;
 
+import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hsj.hmdp.dto.Result;
 import com.hsj.hmdp.service.IShopService;
+import com.hsj.hmdp.utils.Constants;
 import org.springframework.web.bind.annotation.*;
 import com.hsj.hmdp.pojo.Shop;
 import javax.annotation.Resource;
@@ -65,7 +68,25 @@ public class ShopController {
             @RequestParam(value = "x", required = false) Double x,
             @RequestParam(value = "y", required = false) Double y
     ) {
-        return shopService.queryShopByType(typeId, current, null, null);
+        return shopService.queryShopByType(typeId, current, x, y);
     }
-    
+
+    /**
+     * 根据商铺名称关键字分页查询商铺信息
+     * @param name 商铺名称关键字
+     * @param current 页码
+     * @return 商铺列表
+     */
+    @GetMapping("/of/name")
+    public Result queryShopByName(
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "current", defaultValue = "1") Integer current
+    ) {
+        // 根据类型分页查询
+        Page<Shop> page = shopService.query()
+                .like(StrUtil.isNotBlank(name), "name", name)
+                .page(new Page<>(current, Constants.MAX_PAGE_SIZE));
+        // 返回数据
+        return Result.ok(page.getRecords());
+    }
 }

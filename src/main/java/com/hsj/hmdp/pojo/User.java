@@ -24,7 +24,7 @@ public class User implements Serializable {
     private Long id; //设置自增主键
     private String phone; //电话号码
     private String password; //密码
-    private String nick_name; //昵称
+    private String nickName; //昵称
     private String icon;//头像-对应的URL
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;//创建时间-自动填充

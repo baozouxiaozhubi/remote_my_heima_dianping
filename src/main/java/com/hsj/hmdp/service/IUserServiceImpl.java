@@ -13,13 +13,19 @@ import com.hsj.hmdp.pojo.User;
 import com.hsj.hmdp.utils.Constants;
 import com.hsj.hmdp.utils.RegexUtils;
 import com.hsj.hmdp.utils.SnowflakeSingleton;
+import com.hsj.hmdp.utils.UserContext;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.connection.BitFieldSubCommands;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -153,8 +159,68 @@ public class IUserServiceImpl extends ServiceImpl<UserMapper, User> implements I
     private User createUserWithPhone(String phone) {
         User user = new User();
         user.setPhone(phone);
-        user.setNick_name("user_"+RandomUtil.randomString(10));
+        user.setNickName("user_"+RandomUtil.randomString(10));
         baseMapper.insert(user);
         return user;
+    }
+
+    //利用BitMap实现签到
+    @Override
+    public Result sign() {
+        //1.获取当前用户
+        UserDto user = UserContext.getUser();
+        Long userId = user.getId();
+        //2.获取日期
+        LocalDateTime now = LocalDateTime.now();
+        //3.拼接Key
+        String keySuffix = now.format(DateTimeFormatter.ofPattern(":yyyyMM"));
+        String key = Constants.USER_SIGN_KEY + userId + keySuffix;
+        //4.获取今天是几号
+        int dayOfMonth = now.getDayOfMonth();
+        //5.设置 Redis SETBIT key offset 1
+        stringRedisTemplate.opsForValue().setBit(key, dayOfMonth-1, true);
+        return Result.ok();
+    }
+
+    @Override
+    public Result signCount() {
+        //1.获取当前用户
+        UserDto user = UserContext.getUser();
+        Long userId = user.getId();
+        //2.获取日期
+        LocalDateTime now = LocalDateTime.now();
+        //3.拼接Key
+        String keySuffix = now.format(DateTimeFormatter.ofPattern(":yyyyMM"));
+        String key = Constants.USER_SIGN_KEY + userId + keySuffix;
+        //4.获取本月至今为止的所有签到记录，返回的是一个十进制数字
+        int dayOfMonth = now.getDayOfMonth();
+        List<Long> result = stringRedisTemplate.opsForValue().bitField(
+                key,
+                BitFieldSubCommands.create()
+                        .get(BitFieldSubCommands
+                                .BitFieldType
+                                .unsigned(dayOfMonth))
+                                .valueAt(0)
+        );
+        if(result==null || result.isEmpty())return Result.ok(0);
+        Long num = result.get(0); //获得代表签到记录的十进制数字
+        //5.循环遍历并统计连续签到数
+        int cnt = 0;
+        while(num>0) {
+            //5.1 &1得到数字最后一个bit位 判断是否为0
+            if((num & 1) ==0)
+            {
+                //5.2 为0则说明连续签到断了，直接结束
+                break;
+            }
+            else
+            {
+                //5.3 否则连续签到计数器+1
+                cnt++;
+                //5.4 把数字右移一位继续循环
+                num = num >> 1;
+            }
+        }
+        return Result.ok(cnt);
     }
 }
