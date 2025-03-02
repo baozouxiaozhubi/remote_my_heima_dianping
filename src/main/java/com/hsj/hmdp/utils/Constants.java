@@ -1,6 +1,8 @@
 package com.hsj.hmdp.utils;
 
 public final class Constants {
+    public static final String PHONE_REGEX = "^1[3-9]\\d{9}$";
+
     public static final String CODE = "code";
     public static final String USER = "user";
     public static final String LOGIN_CODE_HEADER = "login:code:";
@@ -18,6 +20,7 @@ public final class Constants {
     public static final String FEED_KEY = "feed:";
     public static final String SHOP_GEO_KEY = "shop:geo:";
     public static final String USER_SIGN_KEY = "sign:";
+    public static final String USER_SIGN_OUT_KEY = "sign:out:";
     public static final String IMAGE_UPLOAD_DIR = "E:\\hmdp\\nginx-1.18.0\\html\\hmdp\\imgs";
     public static final String USER_NICK_NAME_PREFIX = "user_";
     public static final String ID_PREFIX_ORDER = "order";

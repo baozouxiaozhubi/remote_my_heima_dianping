@@ -17,8 +17,8 @@ import com.hsj.hmdp.utils.UserContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.connection.BitFieldSubCommands;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -63,6 +63,7 @@ public class IUserServiceImpl extends ServiceImpl<UserMapper, User> implements I
     //从前端获取用户输入的手机号并生成验证码返回的功能-基于redis已实现
     @Override
     public Result sendCode(String phone, HttpSession session) {
+
         //1. 校验手机号是否合法
         if(RegexUtils.isPhoneInvalid(phone))
         {
@@ -70,10 +71,11 @@ public class IUserServiceImpl extends ServiceImpl<UserMapper, User> implements I
             return Result.fail("手机号不合法");
         }
         //3. 合法生成验证码
-        String code= RandomUtil.randomNumbers(6);
+        String code = RandomUtil.randomNumbers(6);
 
         //4. 保存生成的验证码到redis并设置过期时间
-        stringRedisTemplate.opsForValue().set(Constants.LOGIN_CODE_HEADER +phone, code, Constants.LOGIN_CODE_TTL, TimeUnit.MINUTES);
+        stringRedisTemplate.opsForValue().set(Constants.LOGIN_CODE_HEADER +phone,
+                code, Constants.LOGIN_CODE_TTL, TimeUnit.MINUTES);
 
         //5.发送验证码
         log.debug("验证码成功生成，为："+code);
@@ -117,12 +119,21 @@ public class IUserServiceImpl extends ServiceImpl<UserMapper, User> implements I
         Map<String, String> userDtoMap = new HashMap<>();
         userDtoMapObject.forEach((key, value) -> userDtoMap.put(key, String.valueOf(value)));
         //7.3 存储用户信息到redis中
-        stringRedisTemplate.opsForHash().putAll(Constants.LOGIN_TOKEN_HEADER+token,userDtoMap);
+        stringRedisTemplate.opsForHash().putAll(Constants.LOGIN_TOKEN_HEADER+token,
+                userDtoMap);
         //7.4 设置token有效期
-        stringRedisTemplate.expire(Constants.LOGIN_TOKEN_HEADER+token, Constants.LOGIN_TOKEN_TTL, TimeUnit.MINUTES);
+        stringRedisTemplate.expire(Constants.LOGIN_TOKEN_HEADER+token,
+                Constants.LOGIN_TOKEN_TTL, TimeUnit.MINUTES);
 
-        //8.将token显式的返回给用户--自动放入['Authorization']中
+        //8.将token显式的返回给用户--放入['Authorization']中
         return Result.ok(token);
+    }
+
+    @Override
+    public Result logout(String token){
+        stringRedisTemplate.delete(Constants.LOGIN_TOKEN_HEADER+token);//用于登出基于Redis实现的session的登录
+        UserContext.removeUser();
+        return Result.ok();
     }
 
     //用户输入手机号+密码/验证码 后端登陆功能+未注册用户注册-基于session已经实现
@@ -136,7 +147,7 @@ public class IUserServiceImpl extends ServiceImpl<UserMapper, User> implements I
             return Result.fail("手机号不合法");
         }
         //3.校验验证码
-        Map<String,String> map = session.getAttribute(Constants.CODE)==null ? new HashMap<>() : (Map<String,String>)session.getAttribute(Constants.CODE);
+        Map<String,String> map = session.getAttribute(Constants.CODE)==null?new HashMap<>():(Map<String,String>)session.getAttribute(Constants.CODE);
         String code = loginFormDTO.getCode();
         String cacheCode = map.get(phone);
         if(cacheCode==null || !cacheCode.equals(code))

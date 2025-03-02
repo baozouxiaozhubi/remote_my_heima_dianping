@@ -27,7 +27,7 @@ public class ShopController {
         //return shopService.queryById(id);
         //使用工具类，采用逻辑删除方案解决缓存击穿问题，未解决缓存穿透问题
         //return shopService.queryWithLogicalExpireById(id);
-        //使用工具类，采用互斥锁方案解决缓存击穿问题，解决l缓存穿透问题
+        //使用工具类，采用互斥锁方案解决缓存击穿问题，解决缓存穿透问题
         return shopService.queryWithMutexById(id);
     }
 

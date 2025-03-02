@@ -3,6 +3,7 @@ package com.hsj.hmdp.utils;
 import cn.hutool.core.bean.BeanUtil;
 import com.hsj.hmdp.dto.UserDto;
 import jodd.util.StringUtil;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -27,7 +28,8 @@ public class RefreshTokenInterceptor implements HandlerInterceptor {
         //2.token为空直接放行，不用刷新token
         if(StringUtil.isBlank(token))return true;
         //3.否则根据token从redis中获取用户
-        Map<Object,Object> userDtoMap = stringRedisTemplate.opsForHash().entries(Constants.LOGIN_TOKEN_HEADER+token);
+        Map<Object,Object> userDtoMap = stringRedisTemplate.opsForHash()
+                .entries(Constants.LOGIN_TOKEN_HEADER+token);
         //4.判断用户是否存在
         if (userDtoMap.isEmpty()) {
             //4.不存在，说明登陆过期，直接放行
@@ -38,7 +40,8 @@ public class RefreshTokenInterceptor implements HandlerInterceptor {
         //6.保存用户信息到ThreadLocal
         UserContext.saveUser(user);
         //7.刷新token有效期
-        stringRedisTemplate.expire(Constants.LOGIN_TOKEN_HEADER+token, Constants.LOGIN_TOKEN_TTL, TimeUnit.MINUTES);
+        stringRedisTemplate.expire(Constants.LOGIN_TOKEN_HEADER+token
+                , Constants.LOGIN_TOKEN_TTL, TimeUnit.MINUTES);
         //8.放行
         System.out.println("token已被刷新");
         return true;

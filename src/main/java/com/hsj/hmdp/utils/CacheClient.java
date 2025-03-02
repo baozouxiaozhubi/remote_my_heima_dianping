@@ -45,39 +45,39 @@ public class CacheClient {
         RedisData redisData=new RedisData();
         redisData.setData(value);
         redisData.setExpireTime(LocalDateTime.now().plusSeconds(timeUnit.toSeconds(Time)));
-        stringRedisTemplate.opsForValue().set(key, JSONUtil.toJsonStr(redisData,jsonConfig), Time, timeUnit);
+        stringRedisTemplate.opsForValue().set(key, JSONUtil.toJsonStr(redisData,jsonConfig));//永不过期，只有逻辑过期
     }
 
-    // 方法3:根据指定的key查询缓存，并反序列化为指定类型，利用缓存空值的方式解决缓存穿透问题(没有解决缓存击穿)
+    // 方法3:根据指定的key查询缓存，并反序列化为指定类型，利用缓存【空值】的方式解决缓存穿透问题(没有解决缓存击穿)
     public <R,ID> R queryWithTTL(String keyPrefix, ID id, Class<R> type,
                                  Function<ID,R> function, Long time, TimeUnit timeUnit)
     {
         String key = keyPrefix + id;
-        //查看缓存中有没有
         String json = stringRedisTemplate.opsForValue().get(key);
-        if(StrUtil.isNotBlank(json)) //isNotBlank(),对于null或空串都返回false
-        {
-            return JSONUtil.toBean(json,type);
-        }
 
-        if(json != null) return null; //==null说明未命中，应该从数据库中查询，!=null说明是”“空串,即占位符，代表缓存穿透
+        //1.查看缓存，缓存中存在则直接返回，isNotBlank(),对于null(缓存失效或还没有缓存null的缓存穿透)或空串占位符(缓存穿透)都返回false
+        if(StrUtil.isNotBlank(json)) return JSONUtil.toBean(json,type);
 
-        //从数据库中查询，由于不知道根据什么查询，所以应该由调用者指定查询逻辑
+        //2.查到null说明未命中，应该从数据库中查询，!=null说明是”“空串,即占位符，代表缓存穿透，应该直接返回
+        if(json != null) return null;
+
+        //3.执行查询逻辑，由于不知道根据什么查询，所以应该由调用者指定查询逻辑
         R r = function.apply(id);
 
-        //不存在 缓存穿透，存空值
+        //4.查询的Id不存在 缓存穿透，存空值
         if(r==null)
         {
+            //5.需要给空值存一个有效期，防止后来存入key对应的行到数据库导致的不一致
             stringRedisTemplate.opsForValue().set(key,"",3,TimeUnit.MINUTES);
             return null;
         }
 
-        //存在 写入缓存
+        //6.存在 写入缓存
         this.setWithTTL(key,r,time,timeUnit);
         return r;
     }
 
-    // 方法4:根据指定的key查询缓存，并反序列化为指定类型，需要利用逻辑过期解决缓存击穿问题
+    // 方法4:根据指定的key查询缓存，并反序列化为指定类型，需要利用逻辑过期解决缓存击穿问题，不用解决缓存穿透
     public <R,ID> R queryWithLogicalTTL(String keyPrefix, ID id, Class<R> type,
                                         Function<ID,R> function, Long time, TimeUnit timeUnit)
     {
@@ -85,44 +85,46 @@ public class CacheClient {
         String json = stringRedisTemplate.opsForValue().get(key);
         if(StrUtil.isBlank(json))
         {
-            //缓存不存在(这里因为缓存击穿问题只发生在热点数据上，一般缓存【从未出现】的数据代表数据不重要
-            // 例如未参与活动)，因此只需要解决缓存击穿问题，不需要考虑缓存穿透问题
+            //因为缓存击穿问题只发生在热点数据(只能通过提前预热建立缓存，而不通过未命中建立缓存)上，
+            //一般缓存【从未出现】的数据代表数据不重要例如未参与活动，因此只需要解决缓存击穿问题，不需要考虑缓存穿透问题
             return null;
         }
         RedisData redisData = JSONUtil.toBean(json,RedisData.class);
         LocalDateTime expireTime = redisData.getExpireTime();
-        //由于RedisData中的data为Object类型，需要单独序列化成JSON再反序列化成特定类型
+
+        //由于RedisData中的data为Object类型，需要反序列化成特定类型
+        //toBean的参数可以是String类型的JSON也可以直接是JSONObject
         R r = JSONUtil.toBean((JSONObject) redisData.getData(),type);
-        //判断是否逻辑过期
-        if(expireTime.isAfter(LocalDateTime.now()))
-        {
-            //逻辑未过期则直接返回
-            return r;
-        }
+
+        //判断是否逻辑过期，逻辑未过期则直接返回
+        if(expireTime.isAfter(LocalDateTime.now()))return r;
+
         //逻辑过期则开启新线程进行缓存重建
-        String lockKey = keyPrefix+":LOCK"+id;
-        boolean isLock = tryGetLock(lockKey);
-        if(isLock)
-        {
-            try
+        CACHE_REBUILD_EXECUTOR.submit(() -> {
+            String lockKey = keyPrefix+":LOCK"+id;
+            boolean isLock = tryGetLock(lockKey);
+            if(isLock)
             {
-                //查询数据库
-                R r1 = function.apply(id);
-                //写入Redis
-                this.setWithLogicalTTL(key,r1,time,timeUnit);
+                try
+                {
+                    //查询数据库
+                    R r1 = function.apply(id);
+                    //写入Redis
+                    setWithLogicalTTL(key,r1,time,timeUnit);
+                }
+                catch(Exception e)
+                {
+                    throw new RuntimeException(e);
+                }
+                finally {
+                    unlock(lockKey);
+                }
             }
-            catch(Exception e)
-            {
-                throw new RuntimeException(e);
-            }
-            finally {
-                unlock(lockKey);
-            }
-        }
+        });
         return r;
     }
 
-    //使用互斥锁解决缓存击穿问题(考虑缓存穿透)
+    //使用互斥锁解决缓存击穿问题(需要考虑缓存穿透，因为缓存中不存在可能是过期了)
     public <R,ID> R queryWithMutex(String prefix, ID id, Class<R> type,
                                    Function<ID,R> function, Long time, TimeUnit timeUnit)
     {
@@ -138,6 +140,8 @@ public class CacheClient {
         //未击中则从数据库中查询
         String lockKey = prefix+":LOCK"+id;
         R r = null;
+
+        //锁住别的查询线程
         try
         {
             boolean isLock = tryGetLock(lockKey);

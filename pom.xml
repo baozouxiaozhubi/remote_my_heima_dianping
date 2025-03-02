@@ -104,6 +104,11 @@
             <version>5.0.7</version>
             <type>pom</type>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.2.8</version> <!-- 或者使用最新的 1.2.x 版本 -->
+        </dependency>
     </dependencies>
 
     <build>

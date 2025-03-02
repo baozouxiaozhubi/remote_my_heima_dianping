@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 @Service
 public class IShopTypeServiceImpl extends ServiceImpl<ShopTypeMapper, ShopType> implements IShopTypeService {
     @Autowired
-    @Qualifier("MyStringRedisTemplate")
     private StringRedisTemplate stringRedisTemplate;
 
     @Resource
@@ -47,6 +46,7 @@ public class IShopTypeServiceImpl extends ServiceImpl<ShopTypeMapper, ShopType> 
         return shopTypeList;
     }
 
+    //把ShopType对象列表存进Redis缓存中
     public void saveShopTypeList(String key, List<ShopType> shopTypeList) throws JsonProcessingException
     {
         // 将 List 中的用户对象序列化为 JSON 字符串
@@ -57,6 +57,7 @@ public class IShopTypeServiceImpl extends ServiceImpl<ShopTypeMapper, ShopType> 
         }
     }
 
+    //从Redis缓存中读取ShopType对象列表
     public List<ShopType> getShopTypeList(String key) throws JsonProcessingException
     {
         List<String> shopTypeJsonList = stringRedisTemplate.opsForList().range(key, 0, -1); // 获取所有店铺JSON 字符串

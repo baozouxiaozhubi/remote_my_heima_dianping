@@ -79,6 +79,7 @@ public class IBlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements I
         blog.setIsLike(score != null);
     }
 
+    //把笔记作者信息保存到笔记类中
     private void queryBlogUser(Blog blog) {
         Long userId = blog.getUserId();
         User user = userService.getById(userId);
@@ -200,10 +201,7 @@ public class IBlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements I
             ids.add(Long.valueOf(Objects.requireNonNull(typedTuple.getValue())));
             //4.3 获取分数(时间戳)
             long time = Objects.requireNonNull(typedTuple.getScore()).longValue();
-            if(time == minTime)
-            {
-                os++;
-            }
+            if(time == minTime)os++;
             else
             {
                 minTime = time;
@@ -211,7 +209,7 @@ public class IBlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements I
             }
         }
 
-        //5.根据blogId查blog
+        //5.根据blogId查blog-处理ZSET到数据库乱序问题
         String idStr = StrUtil.join(",", ids); //手动指定返回的顺序
         List<Blog> blogs = blogService.query().in("id", ids).
                 last("ORDER BY FIELD(id," + idStr + ")").list()
@@ -224,7 +222,7 @@ public class IBlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements I
                 })
                 .collect(Collectors.toList());
 
-        //6.封装并返回
+        //6.封装并返回 下次访问以minTime为max，跳过offset个
         ScrollResult r = new ScrollResult();
         r.setList(blogs);
         r.setOffset(os);

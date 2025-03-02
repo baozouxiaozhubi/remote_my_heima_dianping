@@ -10,6 +10,9 @@ local stockKey = 'seckill:stock:' .. voucherid
 -- 2.2 订单KEY
 local orderKey = 'seckill:order:' .. voucherid
 
+--输出库存KEY到Redis日志
+redis.log(redis.LOG_NOTICE, stockKey)
+
 -- 3. 脚本业务
 -- 3.1 判断库存是否小于等于0
 if(tonumber(redis.call('get',stockKey))<=0) then

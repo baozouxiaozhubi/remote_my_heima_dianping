@@ -25,21 +25,25 @@ public class BlogController {
         return blogService.saveBlog(blog);
     }
 
+    //按照点赞排行榜返回笔记
     @GetMapping("/hot")
     public Result queryHotBlog(@RequestParam(value = "current", defaultValue = "1") Integer current) {
         return blogService.queryHotBlog(current);
     }
 
+    //按照笔记id查询笔记
     @GetMapping("/{id}")
     public Result queryBlogById(@PathVariable("id") Long id) {
         return blogService.queryBlogById(id);
     }
 
+    //给笔记点赞
     @PutMapping("/like/{id}")
     public Result likeBlog(@PathVariable("id") Long id){
         return blogService.likeBlog(id);
     }
 
+    //查看自己发的笔记
     @GetMapping("/of/me")
     public Result queryMyBlog(@RequestParam(value = "current", defaultValue = "1") Integer current) {
         // 获取登录用户

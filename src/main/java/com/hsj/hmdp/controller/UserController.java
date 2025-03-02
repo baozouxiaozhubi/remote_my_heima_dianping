@@ -24,7 +24,6 @@ public class UserController {
     @Resource
     private IUserInfoService userInfoService;
 
-    //发送手机验证码--类之前加'/' 方法之前不加'/'
     @PostMapping("/code")
     public Result sendCode(@RequestParam("phone") String phone, HttpSession session) {
         return userService.sendCode(phone,session);
@@ -34,6 +33,11 @@ public class UserController {
     @PostMapping("/login")
     public Result login(@RequestBody LoginFormDTO loginForm, HttpSession session) {
         return userService.login(loginForm,session);
+    }
+
+    @PostMapping("/logout")
+    public Result logout(@RequestHeader("Authorization") String token) {
+        return userService.logout(token);
     }
 
     @GetMapping("/me")

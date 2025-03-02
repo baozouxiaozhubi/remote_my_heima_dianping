@@ -1,5 +1,7 @@
 package com.hsj.hmdp.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.hsj.hmdp.pojo.ShopType;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
@@ -16,8 +18,20 @@ public class RedisConfig {
     @Bean
     public StringRedisTemplate MyStringRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
         // 创建 StringRedisTemplate 实例
-        StringRedisTemplate template = new StringRedisTemplate();
-        template.setConnectionFactory(redisConnectionFactory); // 设置 Redis 连接工厂
+        StringRedisTemplate template = new StringRedisTemplate(redisConnectionFactory);
+
+        // 创建 ObjectMapper 用于 把Java对象序列化成JSON
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule()); // 注册 Java8 时间类支持
+
+        // 使用 Jackson2JsonRedisSerializer 作为序列化器(可以为不同数据类型选择不同的序列化器)--为Object选择序列化器
+        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
+        jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
+
+        // 设置 RedisTemplate 的 key 和 value 序列化方式
+        template.setKeySerializer(new StringRedisSerializer());  // key 使用 StringRedisSerializer
+        template.setValueSerializer(jackson2JsonRedisSerializer);  // value 使用 Jackson2JsonRedisSerializer
+
         return template;
     }
 

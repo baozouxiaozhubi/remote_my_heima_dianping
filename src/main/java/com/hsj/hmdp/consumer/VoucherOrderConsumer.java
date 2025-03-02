@@ -29,10 +29,12 @@ public class VoucherOrderConsumer implements RocketMQListener<VoucherOrder> {
         try {
             // 事务处理订单
             voucherOrderMapper.insert(voucherOrder);
-            int flag = voucherOrderMapper.stock_minus(voucherOrder.getVoucherId());
-            if (flag == 0) {
-                throw new RuntimeException("库存不足");
+            //乐观锁改进=1 只在修改时候判断stock>0
+            int stock = voucherOrderMapper.select_Stock_For_Update(voucherOrder.getVoucherId());
+            if (stock <= 0) {
+                System.out.println("库存不足");
             }
+            voucherOrderMapper.stock_minus(voucherOrder.getVoucherId()); // 实际扣减库存操作
             System.out.println("成功处理订单: " + voucherOrder.getId());
         } catch (Exception e) {
             log.error("处理订单异常，消息将进行重试", e);

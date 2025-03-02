@@ -97,11 +97,11 @@ public class IVoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vo
     public Result seckillVoucher(Long voucherId) {
         //0. 获取用户Id
         Long userId = UserContext.getUser().getId();
-        //1. 执行Lua脚本
+        //1. 执行Lua脚本--也可以加分布式锁
         Long r = stringRedisTemplate.execute(
                 SECKILL_SCRIPT,
                 Collections.emptyList(),
-                voucherId.toString(),userId.toString()
+                voucherId,userId
                 );
         //2. 判断结果是否为0
         if(r!=0)
@@ -159,7 +159,7 @@ public class IVoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vo
             return Result.fail("库存不足");
         }
 
-        //4.一人一单
+        //4.一人(同一时间)一单
         Long userId = UserContext.getUser().getId();
 
         //使用synchronized代码块加锁--只在单机模式下管用
@@ -169,7 +169,7 @@ public class IVoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vo
 //            return proxy.createVoucherOrder(voucherId);
 //        }
 
-        //使用Redis加分布式锁
+        //使用Redis加分布式锁--在分布式下也管用
         //ILock lock = new SimpleRedisLock(stringRedisTemplate,"order:"+userId);
 
         //使用开源框架Redisson获取可重入的，可重试的，主从一致的分布式锁
@@ -194,7 +194,7 @@ public class IVoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vo
     }
     ***/
 
-    /***第一版 同步下单的创建订单函数
+    /***第一版 同步下单的创建订单函数--判断用户购买资格+防止超卖都在这里处理
     //保证【判断资格】和【创建订单】的原子性
     @Transactional
     public Result createVoucherOrder(Long voucherId)
@@ -218,10 +218,11 @@ public class IVoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vo
 //        if(!success)return Result.fail("库存不足");
 
         //乐观锁改进=1 只在修改时候判断stock>0
-        int flag = getBaseMapper().stock_minus(voucherId);
-        if (flag == 0) {
+        int stock = getBaseMapper().select_Stock_For_Update(voucherId);
+        if (stock <= 0) {
             return Result.fail("库存不足");
         }
+        getBaseMapper().stock_minus(voucherId); // 实际扣减库存操作
 
         //6.创建订单
         VoucherOrder newVoucherOrder = new VoucherOrder();

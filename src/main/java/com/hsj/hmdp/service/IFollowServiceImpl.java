@@ -75,9 +75,11 @@ public class IFollowServiceImpl extends ServiceImpl<FollowMapper, Follow> implem
         UserDto user = UserContext.getUser();
         Long userId = user.getId();
         String currentUserKey = Constants.FOLLOW_KEY + userId;
+        rebuild_follow_cache(userId);
 
-        //获取要查询共同关注的用户的KEY
+        //获取要查询共同关注的用户的KEY并重建关注缓存
         String userKey = Constants.FOLLOW_KEY + id;
+        rebuild_follow_cache(id);
 
         //查交集
         Set<String> intersect = stringRedisTemplate.opsForSet().intersect(currentUserKey,userKey);
@@ -93,5 +95,17 @@ public class IFollowServiceImpl extends ServiceImpl<FollowMapper, Follow> implem
                 .map(uuser->{return BeanUtil.copyProperties(uuser,UserDto.class);})
                 .collect(Collectors.toList());
         return Result.ok(users);
+    }
+
+    //重建失效的关注用户缓存SET
+    private void rebuild_follow_cache(Long userId)
+    {
+        String UserKey = Constants.FOLLOW_KEY + userId;
+        if(Boolean.TRUE.equals(stringRedisTemplate.hasKey(UserKey)))return;
+        List<Long> follow_user_ids = query().eq("user_id",userId).list()
+                .stream().map(Follow::getFollowUserId).collect(Collectors.toList());
+        follow_user_ids.forEach(follow_user_id->{
+            stringRedisTemplate.opsForSet().add(UserKey,follow_user_id.toString());
+        });
     }
 }
