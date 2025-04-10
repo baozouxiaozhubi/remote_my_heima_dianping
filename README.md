@@ -1,2 +1,3 @@
-# remote_my_heima_dianping
-基于SpringBoot和MyBatisPlus构建的黑马点评项目
+# cityTaste
+团购点评项目
+
